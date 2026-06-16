@@ -1,7 +1,7 @@
 import Link from "next/link";
-import React from "react";
 
-function CTA_Buttons({ primaryText, primaryHref, secondaryText, secondaryHref }: {
+{/* CTA_buttons */}
+export default function CTA_Buttons({ primaryText, primaryHref, secondaryText, secondaryHref }: {
   primaryText: string;
   primaryHref: string;
   secondaryText: string;
@@ -25,4 +25,3 @@ function CTA_Buttons({ primaryText, primaryHref, secondaryText, secondaryHref }:
   );
 }
 
-export default CTA_Buttons;

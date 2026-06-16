@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import CTA_Buttons from "@/components/CTA_button";
 import React from "react";
@@ -78,6 +80,41 @@ export default function Home() {
       "Digital Training Modules",
       "Data Processing",
     ],
+  },
+];
+
+const SUBSIDIARIES = [
+  {
+    logo: "/images/Jobfac-logo.png",
+    name: "JobFactory",
+    description:
+      "Provides Talent Acquisition and Recruitment solutions to companies since 2012.",
+    href: "/subsidiaries/jobfactory",
+    accent: "#2F3296",
+  },
+  {
+    logo: "/images/verifieze-logo.png",
+    name: "Verifieze",
+    description:
+      "Comprehensive Background Verification and Screening services to ensure secure hiring for companies.",
+    href: "/subsidiaries/verifieze",
+    accent: "#2F3296",
+  },
+  {
+    logo: "/images/codeonex-logo.png",
+    name: "CodeOne-X",
+    description:
+      "Technology innovation hub delivering Augmentation, HR Software, Automation, Data, and AI-driven HR solutions.",
+    href: "/subsidiaries/codeonex",
+    accent: "#2F3296",
+  },
+  {
+    logo: "/images/Sourceone-logo.png",
+    name: "SourceOne",
+    description:
+      "Providing alternative hiring solutions like Contract Staffing, EOR Services, Payroll Outsourcing, and Staff Outsourcing to local and overseas entities.",
+    href: "/subsidiaries/sourceone",
+    accent: "#2F3296",
   },
 ];
 
@@ -181,7 +218,7 @@ export default function Home() {
               className="group relative flex flex-col bg-[#2F3296]/20 hover:bg-white/80 border border-white/20 hover:border-white rounded-2xl p-6 transition-all duration-300 cursor-pointer overflow-hidden"
             >
               {/* Number watermark */}
-              <span className="absolute top-4 right-5 text-6xl font-black text-white/20 group-hover:text-[#2F3296]/100 leading-none select-none transition-colors duration-300">
+              <span className="absolute top-4 right-5 text-6xl font-black text-white/80 group-hover:text-[#2F3296]/100 leading-none select-none transition-colors duration-300">
                 {solution.number}
               </span>
 
@@ -220,7 +257,96 @@ export default function Home() {
         </div>
       </div>
     </section>
-  
+    
+    {/* Secsion 3 - Subsidiaries */}
+    <section
+      className="w-full bg-white py-20 px-6 lg:px-12"
+      style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
+    >
+      <div className="w-full max-w-7xl mx-auto">
+
+        {/* ── Section header ── */}
+        <div className="text-center mb-14">
+          <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-4">
+            Our Subsidiaries
+          </p>
+          <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight">
+            Powered by{" "}
+            <span className="text-[#2F3296]">Specialized Brands</span>
+          </h2>
+          {/* Blue accent line */}
+          <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+        </div>
+
+        {/* ── 2×2 Card grid ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {SUBSIDIARIES.map((sub) => (
+            <div
+              key={sub.name}
+              className="group flex flex-col border border-zinc-200 bg-black hover:border-[#2F3296] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+            >
+              {/* Top coloured bar */}
+              <div className="h-1.5 w-full bg-[#2F3296] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              <div className="flex flex-col flex-1 p-8">
+
+                {/* Logo placeholder */}
+                <div className="w-full h-20 flex items-center justify-center mb-6">
+                  <div className="relative w-100 h-28 rounded-lg flex items-center justify-center">
+                    <Image
+                      src={sub.logo}
+                      alt={`${sub.name} logo`}
+                      fill
+                      className="object-contain p-2"
+                      onError={(e) => {
+                        // Fallback: hide broken image, show text
+                        (e.target as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Company name */}
+                <h3 className="text-xl font-bold text-white/50 group-hover:text-[#2F3296] mb-3 transition-colors duration-300">
+                  {sub.name}
+                </h3>
+
+                {/* Description */}
+                <p className="text-zinc-400 text-sm leading-relaxed flex-1 mb-6">
+                  {sub.description}
+                </p>
+
+                {/* Divider */}
+                <div className="w-full h-px bg-zinc-100 mb-6" />
+
+                {/* Learn More CTA */}
+                <Link
+                  href={sub.href}
+                  className="inline-flex items-center gap-2 text-[#2F3296] font-semibold text-sm tracking-wide uppercase hover:gap-3 transition-all duration-200"
+                >
+                  Learn More
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    className="group-hover:translate-x-1 transition-transform duration-200"
+                  >
+                    <path
+                      d="M3 8h10M9 4l4 4-4 4"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
     </>
   );
 }
