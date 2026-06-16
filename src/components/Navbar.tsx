@@ -7,19 +7,19 @@ import Link from "next/link";
 const NAV_ITEMS = [
   { label: "HOME", href: "/" },
   { label: "TESTING", href: "/testing" },
-  { label: "GENERATED AI", href: "/generated-ai" },
-  { label: "PERFORMANCE MANAGEMENT", href: "/performance-management" },
+  /*{ label: "GENERATED AI", href: "/generated-ai" },
+  { label: "PERFORMANCE MANAGEMENT", href: "/performance-management" },*/
   { label: "TECHNICAL", href: "/technical" },
   { label: "SUBSIDIARY", href: "/subsidiary" },
   {
     label: "ABOUT",
     href: "/about",
     children: [
-      { label: "Careers", href: "/about/careers" },
+      /*{ label: "Careers", href: "/about/careers" },
       { label: "Investing", href: "/about/investing" },
-      { label: "Complain", href: "/about/complain" },
+      { label: "Complain", href: "/about/complain" },*/
       { label: "Blog", href: "/about/blog" },
-      { label: "Case Studies", href: "/about/case-studies" },
+      /*{ label: "Case Studies", href: "/about/case-studies" },*/
       { label: "Leadership", href: "/about/leadership" },
       { label: "Hello", href: "/about/hello" },
     ],
@@ -44,9 +44,9 @@ export default function Navbar() {
   return (
     <>
       {/* ── Desktop / Tablet navbar ── */}
-      <nav className="sticky top-0 z-50 flex items-center h-16 px-6 gap-4 bg-[#ffffff] shadow-[0_2px_8px_rgba(0,0,0,0.25)]"
+      <nav className="w-full sticky top-0 z-50 flex items-center h-16 px-6 gap-4 bg-[#ffffff] shadow-[0_2px_8px_rgba(0,0,0,0.25)]"
            style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}>
-
+        
         {/* Logo */}
         <div className="flex-shrink-0 flex items-center mr-8">
           <Link href="/" className="flex items-center">
@@ -56,6 +56,8 @@ export default function Navbar() {
 
         {/* Desktop nav links */}
         <ul className="hidden lg:flex flex-1 items-center justify-center list-none m-0 p-0 gap-0.5 flex-nowrap">
+          {/*Temporary nav item right coner untill stage 2,3 */}
+          <div className="w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 lg:py-28"></div>
           {NAV_ITEMS.map((item) =>
             item.children ? (
               <li key={item.label} className="relative" ref={dropdownRef}>
@@ -104,7 +106,7 @@ export default function Navbar() {
           )}
         </ul>
 
-        {/* Login — desktop */}
+        {/* Login — desktop
         <div className="hidden lg:flex flex-shrink-0 items-center gap-2 ml-auto">
           <span className="text-[#2F3296] text-xs font-semibold tracking-wider whitespace-nowrap">
             Log in
@@ -118,7 +120,7 @@ export default function Navbar() {
               Public
             </Link>
           </div>
-        </div>
+        </div> */}
 
         {/* Hamburger — mobile */}
         <button
@@ -145,7 +147,7 @@ export default function Navbar() {
                 <li key={item.label}>
                   <button
                     onClick={() => setMobileAboutOpen((v) => !v)}
-                    className="flex justify-between items-center w-full px-6 py-3 text-white text-[13px] font-semibold tracking-wider bg-transparent border-0 cursor-pointer text-left hover:bg-white/10 transition-colors duration-100"
+                    className="flex justify-between items-center w-full px-6 py-3 text-black text-[13px] font-semibold tracking-wider bg-transparent border-0 cursor-pointer text-left hover:bg-white/10 transition-colors duration-100"
                   >
                     {item.label}
                     <span className="text-[10px]">{mobileAboutOpen ? "▲" : "▼"}</span>
@@ -171,7 +173,7 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block px-6 py-3 text-white text-[13px] font-semibold tracking-wider no-underline hover:bg-white/10 transition-colors duration-100"
+                    className="block px-6 py-3 text-black text-[13px] font-semibold tracking-wider no-underline hover:bg-[#2F3296] hover:text-#2F3296 transition-colors duration-100"
                   >
                     {item.label}
                   </Link>
@@ -180,17 +182,17 @@ export default function Navbar() {
             )}
           </ul>
 
-          {/* Login — mobile */}
-          <div className="flex items-center gap-2 px-6 pt-3 mt-1 border-t border-white/15 text-white text-[13px]">
+          {/* Login — mobile
+          <div className="flex items-center gap-2 px-6 pt-3 mt-1 border-t border-[#2F3296]/15 text-black text-[13px]">
             <span className="font-semibold">Log in:</span>
-            <Link href="/login/corporate" onClick={() => setMobileOpen(false)} className="text-white no-underline text-[13px] px-1.5 py-1 rounded hover:bg-white/20 transition-colors duration-100">
+            <Link href="/login/corporate" onClick={() => setMobileOpen(false)} className="text-[#2F3296] no-underline text-[13px] px-1.5 py-1 rounded hover:bg-white/20 transition-colors duration-100">
               Corporate
             </Link>
             <span className="text-white/50" aria-hidden="true">|</span>
-            <Link href="/login/public" onClick={() => setMobileOpen(false)} className="text-white no-underline text-[13px] px-1.5 py-1 rounded hover:bg-white/20 transition-colors duration-100">
+            <Link href="/login/public" onClick={() => setMobileOpen(false)} className="text-[#2F3296] no-underline text-[13px] px-1.5 py-1 rounded hover:bg-white/20 transition-colors duration-100">
               Public
             </Link>
-          </div>
+          </div> */}
         </div>
       )}
     </>
