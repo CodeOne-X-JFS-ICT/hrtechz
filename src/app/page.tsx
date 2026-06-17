@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import CTA_Buttons from "@/components/CTA_button";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 
-export default function Home() {
+  /* statistics bar */
   const STATS = [
   { value: "10,000+", label: "Candidates Onboarded" },
   { value: "500+",    label: "Corporate Clients" },
@@ -13,6 +14,7 @@ export default function Home() {
   { value: "24/7",    label: "Digital Support" },
   ];
 
+  /* Solution cards */
   const SOLUTIONS = [
   {
     number: "01",
@@ -83,6 +85,7 @@ export default function Home() {
   },
 ];
 
+/* subsidiaries cards */
 const SUBSIDIARIES = [
   {
     logo: "/images/Jobfac-logo.png",
@@ -118,6 +121,7 @@ const SUBSIDIARIES = [
   },
 ];
 
+/* Benifits grid */
 const BENEFITS = [
   {
     icon: (
@@ -183,6 +187,7 @@ const BENEFITS = [
   },
 ];
 
+/* Industries grid */
 const INDUSTRIES = [
   { label: "Information Technology", icon: "🗹" },
   { label: "Banking & Financial Services", icon: "🗹" },
@@ -196,6 +201,141 @@ const INDUSTRIES = [
   { label: "Education", icon: "🗹" },
 ];
 
+/* Process Steps */
+const STEPS = [
+  {
+    number: "01",
+    title: "Discover",
+    short: "Understand your needs",
+    description:
+      "Diagnose your requirement clearly, then the workforce challenges and business objectives.",
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <circle cx="14" cy="14" r="8" stroke="currentColor" strokeWidth="2" />
+        <path d="M20 20l6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "02",
+    title: "Design & Propose",
+    short: "Craft the right solution",
+    description:
+      "Design and propose our technological support tailored to the HR Manager's specific context and goals.",
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M10 16h12M10 11h8M10 21h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "03",
+    title: "Deliver",
+    short: "Execute with precision",
+    description:
+      "Deliver on time maintaining TAT/SLAs intact, ensuring every commitment is honoured.",
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M6 16l8 8L26 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "04",
+    title: "Optimize",
+    short: "Continuously improve",
+    description:
+      "Continuously improve our delivery through analytics, feedback loops, and proactive support.",
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M4 22l7-9 5 5 5-7 7 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="26" cy="8" r="2.5" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    ),
+  },
+];
+
+/* Success Metrics */
+const METRICS = [
+  { value: 100000, suffix: "+", label: "Candidate Profiles", prefix: "" },
+  { value: 50000,  suffix: "+", label: "Verification Checks", prefix: "" },
+  { value: 5000,   suffix: "+", label: "Successful Onboards", prefix: "" },
+  { value: 100,    suffix: "%", label: "Verification Accuracy", prefix: "" },
+  { value: 20,     suffix: "+", label: "Industry Verticals Served", prefix: "" },
+];
+
+/* Animated counter hook */
+function useCountUp(target: number, duration = 2000, started: boolean) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!started) return;
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // Ease-out
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [target, duration, started]);
+
+  return count;
+}
+
+/* Single metric card */
+function MetricCard({
+  metric,
+  started,
+}: {
+  metric: (typeof METRICS)[0];
+  started: boolean;
+}) {
+  const count = useCountUp(metric.value, 2000, started);
+
+  const display =
+    metric.value >= 1000
+      ? count >= 1000
+        ? (count / 1000).toFixed(count % 1000 === 0 ? 0 : 0) + "k"
+        : count.toString()
+      : count.toString();
+
+  return (
+    <div className="group flex flex-col items-center justify-center text-center p-8 transition-all duration-300 cursor-default">
+      <span className="text-4xl lg:text-5xl font-black text-white group-hover:text-[#2F3296] transition-colors duration-300 leading-none">
+        {metric.prefix}
+        {display}
+        {metric.suffix}
+      </span>
+      <span className="mt-3 text-sm font-semibold text-white/70 group-hover:text-zinc-500 transition-colors duration-300 leading-snug">
+        {metric.label}
+      </span>
+    </div>
+  );
+}
+
+export default function Home() {
+  const [activeStep, setActiveStep] = useState<number>(0);
+  const [metricsStarted, setMetricsStarted] = useState(false);
+  const metricsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMetricsStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (metricsRef.current) observer.observe(metricsRef.current);
+    return () => observer.disconnect();
+  }, []);
+  
   return (
     <>
       <Navbar />
@@ -243,7 +383,7 @@ const INDUSTRIES = [
                 key={stat.label}
                 className={`flex flex-col items-center text-center ${
                   i !== STATS.length - 1
-                    ? "lg:border-r lg:border-zinc-200 lg:pr-8"
+                    ? "lg:border-r lg:border-[#2F3296]/20 lg:pr-8"
                     : ""
                 }`}
               >
@@ -434,7 +574,7 @@ const INDUSTRIES = [
           {/* ── LEFT: Why Choose HRTECHZ ── */}
           <div className="flex-1 flex flex-col">
             <div className="mb-10">
-              <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-3">
+              <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-3">
                 Why Choose HRTECHZ
               </p>
               <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight mb-3">
@@ -473,7 +613,7 @@ const INDUSTRIES = [
           {/* ── RIGHT: Industries We Serve ── */}
           <div className="flex-1 flex flex-col">
             <div className="mb-10">
-              <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-3">
+              <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-3">
                 Industries We Serve
               </p>
               <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight mb-3">
@@ -511,6 +651,186 @@ const INDUSTRIES = [
 
         </div>
       </section>
+
+      
+      {/* SECTION 6 — Process (left) | Detail (right) */}
+      <section className="w-full bg-black py-10 px-6 lg:px-12">
+        <div className="w-full max-w-7xl mx-auto">
+
+          {/* Header */}
+          <div className="text-center mb-14">
+            <p className="text-white text-md font-semibold tracking-[0.18em] uppercase mb-3">
+              Our Process
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#2F3296] leading-tight">
+              How We Help Organizations {" "}
+              <span className="text-white underline decoration-white/40 underline-offset-4">Grow</span>
+            </h2>
+            <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+
+          {/* Two-column layout */}
+          <div className="flex flex-col lg:flex-row gap-10 items-stretch">
+
+            {/* LEFT — step list */}
+            <div className="flex-1 flex flex-col gap-3">
+              {STEPS.map((step, i) => (
+                <button
+                  key={step.title}
+                  onClick={() => setActiveStep(i)}
+                  className={`group flex items-center gap-5 p-5 rounded-2xl border bg-[#2F3296]/20 text-left transition-all duration-300
+                    ${
+                      activeStep === i
+                        ? "bg-[#2F3296] border-[#2F3296] shadow-lg"
+                        : "bg-black border-zinc-200 hover:border-[#2F3296] hover:bg-[#2F3296]"
+                    }`}
+                >
+                  {/* Step number */}
+                  <span
+                    className={`flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl text-lg font-black transition-colors duration-300
+                      ${
+                        activeStep === i
+                          ? "bg-white text-[#2F3296]"
+                          : "bg-black text-white group-hover:bg-white group-hover:text-black"
+                      }`}
+                  >
+                    {step.number}
+                  </span>
+
+                  {/* Title + short */}
+                  <div>
+                    <p
+                      className={`font-bold text-base transition-colors duration-300 ${
+                        activeStep === i ? "text-white" : "text-white/60 group-hover:text-white"
+                      }`}
+                    >
+                      {step.title}
+                    </p>
+                    <p
+                      className={`text-sm transition-colors duration-300 ${
+                        activeStep === i ? "text-white/70" : "text-zinc-400"
+                      }`}
+                    >
+                      {step.short}
+                    </p>
+                  </div>
+
+                  {/* Arrow */}
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    className={`ml-auto flex-shrink-0 transition-all duration-300 ${
+                      activeStep === i
+                        ? "text-white translate-x-1"
+                        : "text-zinc-300 group-hover:text-black"
+                    }`}
+                  >
+                    <path
+                      d="M4 9h10M10 5l4 4-4 4"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              ))}
+
+              {/* Connector line hint */}
+              <p className="text-xs text-zinc-400 text-center mt-2">
+                Click a step to learn more →
+              </p>
+            </div>
+
+            {/* Vertical divider */}
+            <div className="hidden lg:block w-px bg-zinc-100 self-stretch mx-2" />
+
+            {/* RIGHT — active step detail */}
+            <div className="flex-1 flex items-center">
+              <div className="w-full rounded-3xl bg-[#2F3296]/20 border border-zinc-200 p-10 flex flex-col gap-6 transition-all duration-300">
+                {/* Icon */}
+                <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-white text-[#2F3296]">
+                  {STEPS[activeStep].icon}
+                </div>
+
+                {/* Step badge */}
+                <span className="inline-flex items-center gap-2 text-xs font-bold text-[#2F3296] uppercase tracking-widest">
+                  <span className="w-6 h-px bg-[#2F3296]" />
+                  Step {STEPS[activeStep].number}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-3xl font-black text-white leading-tight">
+                  {STEPS[activeStep].title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-white/70 text-base leading-relaxed">
+                  {STEPS[activeStep].description}
+                </p>
+
+                {/* Progress dots */}
+                <div className="flex gap-2 mt-auto pt-4">
+                  {STEPS.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveStep(i)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        activeStep === i
+                          ? "w-8 bg-[#2F3296]"
+                          : "w-2 bg-zinc-300 hover:bg-[#2F3296]/50"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7 — Success Metrics */}
+      <section
+        ref={metricsRef}
+        className="w-full bg-black py-10 px-6 lg:px-12"
+      >
+        <div className="w-full max-w-7xl mx-auto">
+
+          {/* Header */}
+          <div className="text-center mb-14">
+            <p className="text-white text-md font-semibold tracking-[0.18em] uppercase mb-3">
+              Success Metrics
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-[#2F3296] leading-tight">
+              Delivering{" "}
+              <span className="text-white underline decoration-white/40 underline-offset-4">
+                Measurable Results
+              </span>
+            </h2>
+            <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+
+          {/* Metrics grid */}
+            <div className="flex flex-col sm:flex-row items-stretch">
+            {METRICS.map((metric, i) => (
+                <div key={metric.label} className="flex flex-1 items-stretch">
+                <MetricCard metric={metric} started={metricsStarted} />
+                    {i < METRICS.length - 1 && (
+                <div className="hidden sm:block w-px bg-[#2F3296]/40 self-stretch mx-8" />
+            )}
+            </div>
+          ))}
+        </div>
+
+          {/* Bottom tagline */}
+          <p className="text-center text-white/50 text-sm mt-12">
+            Numbers that reflect our commitment to excellence and client success.
+          </p>
+        </div>
+      </section>
+      
     </>
   );
 }
