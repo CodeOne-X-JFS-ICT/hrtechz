@@ -118,13 +118,91 @@ const SUBSIDIARIES = [
   },
 ];
 
+const BENEFITS = [
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M4 14h20M14 4v20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <rect x="3" y="3" width="22" height="22" rx="4" stroke="currentColor" strokeWidth="2"/>
+      </svg>
+    ),
+    title: "End-to-End Tech Solutions",
+    description: "From Sourcing candidates to Exit.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="2"/>
+        <path d="M14 8v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      </svg>
+    ),
+    title: "Faster Hiring",
+    description: "Reduce onboarding timelines through automation and AI-driven sourcing.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M5 14l6 6L23 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    title: "Better Hiring Decisions",
+    description: "Leverage Assessments and Verification services.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="3" y="16" width="5" height="9" rx="1" stroke="currentColor" strokeWidth="2"/>
+        <rect x="11" y="10" width="5" height="15" rx="1" stroke="currentColor" strokeWidth="2"/>
+        <rect x="19" y="4" width="5" height="21" rx="1" stroke="currentColor" strokeWidth="2"/>
+      </svg>
+    ),
+    title: "Scalable Technology",
+    description: "Technology solutions, designed to shift your organization to the next level.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="10" cy="9" r="4" stroke="currentColor" strokeWidth="2"/>
+        <circle cx="20" cy="9" r="4" stroke="currentColor" strokeWidth="2"/>
+        <path d="M2 24c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M20 17c2.5.5 5 2.5 5 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+      </svg>
+    ),
+    title: "Industry Expertise",
+    description: "Specialized knowledge across multiple industries.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M4 20l6-8 5 5 4-6 5 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="3" y="3" width="22" height="22" rx="3" stroke="currentColor" strokeWidth="2"/>
+      </svg>
+    ),
+    title: "Data-Driven Insights",
+    description: "Actionable analytics for workforce Management and Planning.",
+  },
+];
+
+const INDUSTRIES = [
+  { label: "Information Technology", icon: "🗹" },
+  { label: "Banking & Financial Services", icon: "🗹" },
+  { label: "Telecommunication", icon: "🗹" },
+  { label: "Manufacturing", icon: "🗹" },
+  { label: "Retail", icon: "🗹" },
+  { label: "Healthcare", icon: "🗹" },
+  { label: "Hospitality", icon: "🗹" },
+  { label: "Logistics", icon: "🗹" },
+  { label: "BPO & Shared Services", icon: "🗹" },
+  { label: "Education", icon: "🗹" },
+];
+
   return (
     <>
       <Navbar />
       
       {/* Hero Section */}
       <section
-      className="w-full bg-white text-center "
+      className="w-full bg-white text-center"
       style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}>
     
       {/* ── Main hero content ── */}
@@ -184,7 +262,7 @@ const SUBSIDIARIES = [
     
     {/*Section 2 - Ecosystem */}
     <section
-      className="w-full bg-black py-20 px-6 lg:px-12"
+      className="w-full bg-black py-10 px-6 lg:px-12"
       style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
     >
       <div className="w-full max-w-7xl mx-auto">
@@ -260,7 +338,7 @@ const SUBSIDIARIES = [
     
     {/* Secsion 3 - Subsidiaries */}
     <section
-      className="w-full bg-white py-20 px-6 lg:px-12"
+      className="w-full bg-white py-10 px-6 lg:px-12"
       style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
     >
       <div className="w-full max-w-7xl mx-auto">
@@ -279,16 +357,16 @@ const SUBSIDIARIES = [
         </div>
 
         {/* ── 2×2 Card grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {SUBSIDIARIES.map((sub) => (
             <div
               key={sub.name}
               className="group flex flex-col border border-zinc-200 bg-black hover:border-[#2F3296] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
             >
               {/* Top coloured bar */}
-              <div className="h-1.5 w-full bg-[#2F3296] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="h-2 w-full bg-[#2F3296] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <div className="flex flex-col flex-1 p-8">
+              <div className="flex flex-col flex-1 p-4">
 
                 {/* Logo placeholder */}
                 <div className="w-full h-20 flex items-center justify-center mb-6">
@@ -347,6 +425,92 @@ const SUBSIDIARIES = [
         </div>
       </div>
     </section>
+    
+    {/* Section 4 Why choose HRTECHZ, Section 5 Industries we serve  */}
+
+    <section className="w-full bg-zinc-50 py-10 px-6 lg:px-12">
+        <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 items-stretch">
+
+          {/* ── LEFT: Why Choose HRTECHZ ── */}
+          <div className="flex-1 flex flex-col">
+            <div className="mb-10">
+              <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-3">
+                Why Choose HRTECHZ
+              </p>
+              <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight mb-3">
+                The Complete{" "}
+                <span className="text-[#2F3296]">HR Technology</span> Partner
+              </h2>
+              <p className="text-zinc-500 text-base">
+                We assist HR Managers to reach tomorrow's technology today.
+              </p>
+              <div className="mt-4 w-16 h-1 rounded-full bg-[#2F3296]" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 flex-1">
+              {BENEFITS.map((benefit) => (
+                <div
+                  key={benefit.title}
+                  className="group flex flex-col gap-3 bg-white border border-zinc-200 hover:border-[#2F3296] hover:scale-[1.02] rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#2F3296]/10 text-[#2F3296] group-hover:bg-[#2F3296] group-hover:text-white transition-all duration-300">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-black font-bold text-sm group-hover:text-[#2F3296] transition-colors duration-300">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-zinc-500 text-xs leading-relaxed">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Vertical divider */}
+          <div className="hidden lg:block w-px bg-[#2F3296] self-stretch mx-2" />
+
+          {/* ── RIGHT: Industries We Serve ── */}
+          <div className="flex-1 flex flex-col">
+            <div className="mb-10">
+              <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-3">
+                Industries We Serve
+              </p>
+              <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight mb-3">
+                Trusted Across{" "}
+                <span className="text-[#2F3296]">Many Leading</span> Industries
+              </h2>
+              <p className="text-zinc-500 text-base">
+                Delivering specialized HR solutions across diverse sectors.
+              </p>
+              <div className="mt-4 w-16 h-1 rounded-full bg-[#2F3296]" />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 flex-1 content-start">
+              {INDUSTRIES.map((industry) => (
+                <button
+                  key={industry.label}
+                  className={`group flex items-center gap-3 rounded-xl px-4 py-3 border text-left 
+                    hover:text-[#2F3296] shadow-lg bg-white border-zinc-200 text-black hover:border-[#2F3296] hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    `}
+                >
+                  <span className="text-xl flex-shrink-0">{industry.icon}</span>
+                  <span className="text-sm font-semibold leading-snug">
+                    {industry.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+            
+              <div className="mt-6 p-4 rounded-xl bg-[#2F3296]/10 border border-[#2F3296]/20">
+                <p className="text-[#2F3296] text-sm font-medium">
+                  ✓ HRTECHZ delivers specialized HR solutions for all above services.
+                </p>
+              </div>
+          </div>
+
+        </div>
+      </section>
     </>
   );
 }
