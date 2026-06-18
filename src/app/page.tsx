@@ -265,6 +265,61 @@ const METRICS = [
   { value: 20,     suffix: "+", label: "Industry Verticals Served", prefix: "" },
 ];
 
+/* Testimonials data */
+const TESTIMONIALS = [
+  {
+    quote:
+      "HRTECHZ helped us reduce our hiring time by 40% while improving candidate quality significantly across all departments.",
+    initial: "S",
+  },
+  {
+    quote:
+      "The verification process is fast, reliable, and highly professional. We now onboard with absolute confidence.",
+    initial: "J",
+  },
+  {
+    quote:
+      "Their technology solutions completely transformed our recruitment operations. A true end-to-end HR partner.",
+    initial: "A",
+  },
+];
+
+/* Articles data */
+const ARTICLES = [
+  {
+    image: "/images/article-ai-recruitment.png",
+    tag: "AI & Recruitment",
+    title: "The Future of AI in Recruitment",
+    excerpt:
+      "How artificial intelligence is reshaping the way organisations attract, screen, and retain top talent.",
+    href: "/insights/future-of-ai-recruitment",
+  },
+  {
+    image: "/images/article-verification.png",
+    tag: "Background Verification",
+    title: "Why Background Verification Matters",
+    excerpt:
+      "A deep dive into why rigorous background checks protect your organisation and build a culture of trust.",
+    href: "/insights/background-verification-matters",
+  },
+  {
+    image: "/images/article-data-hiring.png",
+    tag: "HR Strategy",
+    title: "Building a Data-Driven Hiring Strategy",
+    excerpt:
+      "Leveraging analytics and workforce data to make smarter, faster, and more confident hiring decisions.",
+    href: "/insights/data-driven-hiring-strategy",
+  },
+  {
+    image: "/images/article-hr-trends.png",
+    tag: "HR Technology",
+    title: "HR Technology Trends for 2026",
+    excerpt:
+      "The key technology shifts every HR leader needs to watch and act on this year to stay competitive.",
+    href: "/insights/hr-technology-trends-2026",
+  },
+];
+
 /* Animated counter hook */
 function useCountUp(target: number, duration = 2000, started: boolean) {
   const [count, setCount] = useState(0);
@@ -317,10 +372,25 @@ function MetricCard({
   );
 }
 
+/* Star rating */
+function Stars() {
+  return (
+    <div className="flex gap-1">
+      {[...Array(5)].map((_, i) => (
+        <svg key={i} width="16" height="16" viewBox="0 0 16 16" fill="#2F3296">
+          <path d="M8 1l1.8 3.6L14 5.6l-3 2.9.7 4.1L8 10.5l-3.7 2.1.7-4.1-3-2.9 4.2-.6z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const [activeStep, setActiveStep] = useState<number>(0);
   const [metricsStarted, setMetricsStarted] = useState(false);
   const metricsRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -476,7 +546,7 @@ export default function Home() {
       </div>
     </section>
     
-    {/* Secsion 3 - Subsidiaries */}
+    {/* Section 3 - Subsidiaries */}
     <section
       className="w-full bg-white py-10 px-6 lg:px-12"
       style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
@@ -496,12 +566,12 @@ export default function Home() {
           <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
         </div>
 
-        {/* ── 2×2 Card grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* 2×2 Card Grid on Desktop / Swipeable Carousel on Mobile */}
+        <div className="flex flex-row sm:grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 sm:px-0 sm:mx-auto">
           {SUBSIDIARIES.map((sub) => (
             <div
               key={sub.name}
-              className="group flex flex-col border border-zinc-200 bg-black hover:border-[#2F3296] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+              className="group flex flex-col border border-zinc-200 bg-black hover:border-[#2F3296] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 w-[85%] sm:w-auto flex-shrink-0 snap-center"
             >
               {/* Top coloured bar */}
               <div className="h-2 w-full bg-[#2F3296] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -510,7 +580,7 @@ export default function Home() {
 
                 {/* Logo placeholder */}
                 <div className="w-full h-20 flex items-center justify-center mb-6">
-                  <div className="relative w-100 h-28 rounded-lg flex items-center justify-center">
+                  <div className="relative w-full h-28 rounded-lg flex items-center justify-center">
                     <Image
                       src={sub.logo}
                       alt={`${sub.name} logo`}
@@ -812,17 +882,27 @@ export default function Home() {
             <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
           </div>
 
-          {/* Metrics grid */}
-            <div className="flex flex-col sm:flex-row items-stretch">
+          {/* Metrics grid — Fully Mobile Responsive */}
+          <div className="flex flex-col sm:flex-row items-stretch">
             {METRICS.map((metric, i) => (
-                <div key={metric.label} className="flex flex-1 items-stretch">
+              <div key={metric.label} className="flex flex-col sm:flex-row flex-1 items-stretch">
+                
+                {/* Main Metric Card Asset */}
                 <MetricCard metric={metric} started={metricsStarted} />
-                    {i < METRICS.length - 1 && (
-                <div className="hidden sm:block w-px bg-[#2F3296]/40 self-stretch mx-8" />
-            )}
-            </div>
-          ))}
-        </div>
+                
+                {/* Inline Adaptive Divider Separation Logic */}
+                {i < METRICS.length - 1 && (
+                  <>
+                    {/* Desktop Mode: High-fidelity Vertical Line */}
+                    <div className="hidden sm:block w-px bg-[#2F3296]/40 self-stretch mx-8" />
+                    
+                    {/* Mobile Mode: Responsive Horizontal Line */}
+                    <div className="block sm:hidden h-px w-full bg-[#2F3296]/30 my-6" />
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
 
           {/* Bottom tagline */}
           <p className="text-center text-white/50 text-sm mt-12">
@@ -831,6 +911,147 @@ export default function Home() {
         </div>
       </section>
       
+      {/* SECTION 8 — Client Testimonials*/}
+      <section className="w-full bg-white py-10 px-6 lg:px-12">
+        <div className="w-full max-w-7xl mx-auto">
+
+          {/* Header */}
+          <div className="text-center mb-14">
+            <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-3">
+              Client Testimonials
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight">
+              What Our{" "}
+              <span className="text-[#2F3296]">
+                Clients Say
+              </span>
+            </h2>
+            <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+
+          {/* Single sliding testimonial */}
+            <div className="relative flex items-center gap-6 max-w-3xl mx-auto">
+
+            {/* Left arrow */}
+            <button
+                onClick={() => setActive((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#2F3296] text-black hover:bg-black/50 hover:text-white transition-all duration-300"
+            >
+                ‹
+            </button>
+
+            {/* Card */}
+                <div className="flex-1 flex flex-col items-center text-center gap-5 py-8 px-6">
+                    <p className="text-black font-semibold text-lg leading-relaxed italic">
+                    "{TESTIMONIALS[active].quote}"
+                    </p>
+                    <div className="flex justify-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                        <svg key={i} width="18" height="18" viewBox="0 0 16 16" fill="#FFD700">
+                        <path d="M8 1l1.8 3.6L14 5.6l-3 2.9.7 4.1L8 10.5l-3.7 2.1.7-4.1-3-2.9 4.2-.6z" />
+                        </svg>
+                    ))}
+                </div>
+            </div>
+
+            {/* Right arrow */}
+            <button
+                onClick={() => setActive((prev) => (prev + 1) % TESTIMONIALS.length)}
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full border border-[#2F3296] text-black hover:bg-black/50 hover:text-white transition-all duration-300"
+            >
+                ›
+            </button>
+            </div>
+        </div>
+      </section>
+
+      {/* SECTION 9 — Insights & Resources */}
+      <section className="w-full bg-white py-10 px-6 lg:px-12 overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto">
+
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+            <div>
+              <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-3">
+                Insights & Resources
+              </p>
+              <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight">
+                Latest HR &{" "}
+                <span className="text-[#2F3296]">Technology</span> Insights
+              </h2>
+              <div className="mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+            </div>
+
+            {/* View All button — desktop */}
+            <Link
+              href="/insights"
+              className="hidden sm:inline-flex items-center gap-2 px-6 py-3 border-2 border-[#2F3296] text-[#2F3296] font-semibold rounded-xl hover:bg-[#2F3296] hover:text-white transition-all duration-300 whitespace-nowrap"
+            >
+              View All Articles
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
+
+          {/* Articles grid — Swipeable Row on Mobile, 2 Columns on Desktop */}
+          <div className="flex flex-row sm:grid sm:grid-cols-2 gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 sm:px-0 sm:mx-auto">
+            {ARTICLES.map((article) => (
+              <div
+                key={article.title}
+                className="group flex flex-col sm:flex-row hover:bg-zinc-50 hover:scale-[1.01] rounded-3xl border border-[#2F3296]/20 hover:border-[#2F3296] transition-all duration-300 overflow-hidden w-[88%] sm:w-auto flex-shrink-0 snap-center"
+              >
+
+                {/* Cleaned Image Container — left side */}
+                <div className="relative w-full sm:w-48 md:w-64 h-48 sm:h-auto flex-shrink-0 bg-zinc-100 overflow-hidden">
+                  <img 
+                    src={article.image} 
+                    alt={article.title}
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Content — right side */}
+                <div className="flex flex-col justify-center gap-2 py-4 px-6 flex-1">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-block px-3 py-1 bg-[#2F3296]/10 text-[#2F3296] text-xs font-semibold rounded-full">
+                      {article.tag}
+                    </span>
+                  </div>
+                  <h3 className="text-black font-bold text-xl leading-snug group-hover:text-[#2F3296] transition-colors duration-300">
+                    {article.title}
+                  </h3>
+                  <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">
+                    {article.excerpt}
+                  </p>
+                  <Link
+                    href={article.href}
+                    className="inline-flex items-center gap-2 text-[#2F3296] font-semibold text-sm mt-2 hover:gap-3 transition-all duration-200"
+                  >
+                    Read More
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* View All button — mobile */}
+          <div className="mt-6 flex sm:hidden justify-center">
+            <Link
+              href="/insights"
+              className="w-full text-center inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#2F3296] text-[#2F3296] font-semibold rounded-xl hover:bg-[#2F3296] hover:text-white transition-all duration-300"
+            >
+              View All Articles
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
