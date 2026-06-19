@@ -209,7 +209,7 @@ const STEPS = [
     short: "Understand your needs",
     description:
       "Diagnose your requirement clearly, then the workforce challenges and business objectives.",
-    image: "/images/process-discover.jpg", // 👈 Add your unique image path here
+    image: "/images/process-discover.jpg",
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
         <circle cx="14" cy="14" r="8" stroke="currentColor" strokeWidth="2" />
@@ -223,7 +223,7 @@ const STEPS = [
     short: "Craft the right solution",
     description:
       "Design and propose our technological support tailored to the HR Manager's specific context and goals.",
-    image: "/images/process-design.jpg", // 👈 Add your unique image path here
+    image: "/images/process-design.jpg",
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
         <rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="2" />
@@ -237,7 +237,7 @@ const STEPS = [
     short: "Execute with precision",
     description:
       "Deliver on time maintaining TAT/SLAs intact, ensuring every commitment is honoured.",
-    image: "/images/process-deliver.jpg", // 👈 Add your unique image path here
+    image: "/images/process-deliver.jpg",
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
         <path d="M6 16l8 8L26 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -250,7 +250,7 @@ const STEPS = [
     short: "Continuously improve",
     description:
       "Continuously improve our delivery through analytics, feedback loops, and proactive support.",
-    image: "/images/process-optimize.jpg", // 👈 Add your unique image path here
+    image: "/images/process-optimize.jpg",
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
         <path d="M4 22l7-9 5 5 5-7 7 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
