@@ -209,6 +209,7 @@ const STEPS = [
     short: "Understand your needs",
     description:
       "Diagnose your requirement clearly, then the workforce challenges and business objectives.",
+    image: "/images/process-discover.jpg", // 👈 Add your unique image path here
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
         <circle cx="14" cy="14" r="8" stroke="currentColor" strokeWidth="2" />
@@ -222,6 +223,7 @@ const STEPS = [
     short: "Craft the right solution",
     description:
       "Design and propose our technological support tailored to the HR Manager's specific context and goals.",
+    image: "/images/process-design.jpg", // 👈 Add your unique image path here
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
         <rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" strokeWidth="2" />
@@ -235,6 +237,7 @@ const STEPS = [
     short: "Execute with precision",
     description:
       "Deliver on time maintaining TAT/SLAs intact, ensuring every commitment is honoured.",
+    image: "/images/process-deliver.jpg", // 👈 Add your unique image path here
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
         <path d="M6 16l8 8L26 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -247,6 +250,7 @@ const STEPS = [
     short: "Continuously improve",
     description:
       "Continuously improve our delivery through analytics, feedback loops, and proactive support.",
+    image: "/images/process-optimize.jpg", // 👈 Add your unique image path here
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
         <path d="M4 22l7-9 5 5 5-7 7 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -578,11 +582,11 @@ export default function Home() {
         </div>
 
         {/* ── Solution cards grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex flex-row lg:grid lg:grid-cols-4 gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 lg:px-0 lg:mx-auto">
           {SOLUTIONS.map((solution) => (
             <div
               key={solution.title}
-              className="group relative flex flex-col bg-[#2F3296]/20 hover:bg-white/80 border border-white/20 hover:border-white rounded-2xl p-6 transition-all duration-300 cursor-pointer overflow-hidden"
+              className="group relative flex flex-col bg-[#2F3296]/20 hover:bg-white/80 border border-white/20 hover:border-white rounded-2xl p-6 transition-all duration-300 cursor-pointer overflow-hidden w-[85%] sm:w-[48%] lg:w-auto flex-shrink-0 snap-center"
             >
               {/* Number watermark */}
               <span className="absolute top-4 right-5 text-6xl font-black text-white/80 group-hover:text-[#2F3296]/100 leading-none select-none transition-colors duration-300">
@@ -650,21 +654,24 @@ export default function Home() {
           {SUBSIDIARIES.map((sub) => (
             <div
               key={sub.name}
-              className="group flex flex-col border border-zinc-200 bg-black hover:border-[#2F3296] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 w-[85%] sm:w-auto flex-shrink-0 snap-center"
+              className="group flex flex-col border border-zinc-200 bg-white hover:border-[#2F3296] rounded-2xl overflow-hidden shadow-xl shadow:[#2F3296] hover:shadow-xl transition-all duration-300 w-[85%] sm:w-auto flex-shrink-0 snap-center"
             >
               {/* Top coloured bar */}
-              <div className="h-2 w-full bg-[#2F3296] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="h-2 w-full bg-[#2F3296] opacity-20 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="flex flex-col flex-1 p-4">
 
                 {/* Logo placeholder */}
                 <div className="w-full h-20 flex items-center justify-center mb-6">
-                  <div className="relative w-full h-28 rounded-lg flex items-center justify-center">
+                  <div className="relative w-full h-28 rounded-lg bg-[#090A1E] flex items-center justify-center">
                     <Image
                       src={sub.logo}
                       alt={`${sub.name} logo`}
                       fill
-                      className="object-contain p-2"
+                      /* dynamically force the verifieze asset to invert to clear white */
+                      className={`object-contain p-2 ${
+                        sub.name === "Verifieze" ? "brightness-0 invert" : ""
+                      }`}
                       onError={(e) => {
                         // Fallback: hide broken image, show text
                         (e.target as HTMLImageElement).style.display = "none";
@@ -674,17 +681,17 @@ export default function Home() {
                 </div>
 
                 {/* Company name */}
-                <h3 className="text-xl font-bold text-white/50 group-hover:text-[#2F3296] mb-3 transition-colors duration-300">
+                <h3 className="text-xl font-bold text-black group-hover:text-[#2F3296] mb-3 transition-colors duration-300">
                   {sub.name}
                 </h3>
 
                 {/* Description */}
-                <p className="text-zinc-400 text-sm leading-relaxed flex-1 mb-6">
+                <p className="text-zinc-800 text-sm leading-relaxed flex-1 mb-6">
                   {sub.description}
                 </p>
 
                 {/* Divider */}
-                <div className="w-full h-px bg-zinc-100 mb-6" />
+                <div className="w-full h-px bg-[#090A1E]/40 mb-6" />
 
                 {/* Learn More CTA */}
                 <Link
@@ -819,24 +826,24 @@ export default function Home() {
           </div>
 
           {/* Two-column layout */}
-          <div className="flex flex-col lg:flex-row gap-10 items-stretch">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch justify-center max-w-6xl mx-auto w-full">
 
-            {/* LEFT — step list */}
-            <div className="flex-1 flex flex-col gap-3">
+            {/* LEFT — Step list (Scrollable row on mobile, Vertical stack on desktop) */}
+            <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible scrollbar-none pb-4 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory">
               {STEPS.map((step, i) => (
                 <button
                   key={step.title}
                   onClick={() => setActiveStep(i)}
-                  className={`group flex items-center gap-5 p-5 rounded-2xl border bg-[#2F3296]/20 text-left transition-all duration-300
+                  className={`group flex items-center gap-4 lg:gap-5 p-4 lg:p-5 rounded-2xl border text-left transition-all duration-300 flex-shrink-0 w-[75%] sm:w-[45%] lg:w-full snap-center
                     ${
                       activeStep === i
                         ? "bg-[#2F3296] border-[#2F3296] shadow-lg"
-                        : "bg-black border-zinc-200 hover:border-[#2F3296] hover:bg-[#2F3296]"
+                        : "bg-black border-zinc-200 hover:border-[#2F3296] hover:bg-[#2F3296]/40"
                     }`}
                 >
                   {/* Step number */}
                   <span
-                    className={`flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl text-lg font-black transition-colors duration-300
+                    className={`flex-shrink-0 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-xl text-base lg:text-lg font-black transition-colors duration-300
                       ${
                         activeStep === i
                           ? "bg-white text-[#2F3296]"
@@ -847,16 +854,16 @@ export default function Home() {
                   </span>
 
                   {/* Title + short */}
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p
-                      className={`font-bold text-base transition-colors duration-300 ${
+                      className={`font-bold text-sm lg:text-base truncate transition-colors duration-300 ${
                         activeStep === i ? "text-white" : "text-white/60 group-hover:text-white"
                       }`}
                     >
                       {step.title}
                     </p>
                     <p
-                      className={`text-sm transition-colors duration-300 ${
+                      className={`text-xs lg:text-sm truncate transition-colors duration-300 ${
                         activeStep === i ? "text-white/70" : "text-zinc-400"
                       }`}
                     >
@@ -864,13 +871,13 @@ export default function Home() {
                     </p>
                   </div>
 
-                  {/* Arrow */}
+                  {/* Arrow — Hidden on mobile tabs, visible on desktop */}
                   <svg
                     width="18"
                     height="18"
                     viewBox="0 0 18 18"
                     fill="none"
-                    className={`ml-auto flex-shrink-0 transition-all duration-300 ${
+                    className={`hidden lg:block ml-auto flex-shrink-0 transition-all duration-300 ${
                       activeStep === i
                         ? "text-white translate-x-1"
                         : "text-zinc-300 group-hover:text-black"
@@ -886,53 +893,66 @@ export default function Home() {
                   </svg>
                 </button>
               ))}
-
-              {/* Connector line hint */}
-              <p className="text-xs text-zinc-400 text-center mt-2">
-                Click a step to learn more →
-              </p>
             </div>
 
-            {/* Vertical divider */}
+            {/* Responsive hint text */}
+            <p className="text-xs text-zinc-400 text-center block lg:hidden -mt-2">
+              Swipe steps to navigate your workflow ← →
+            </p>
+
+            {/* Vertical divider — kept exactly the same for desktop */}
             <div className="hidden lg:block w-px bg-zinc-100 self-stretch mx-2" />
 
             {/* RIGHT — active step detail */}
-            <div className="flex-1 flex items-center">
-              <div className="w-full rounded-3xl bg-[#2F3296]/20 border border-zinc-200 p-10 flex flex-col gap-6 transition-all duration-300">
-                {/* Icon */}
-                <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-white text-[#2F3296]">
-                  {STEPS[activeStep].icon}
+            <div className="flex-1 flex items-center justify-center lg:max-w-2xl lg:mx-auto w-full">
+              <div className="w-full rounded-3xl bg-[#2F3296]/10 border border-zinc-200 p-10 flex flex-col gap-6 transition-all duration-300 relative overflow-hidden backdrop-blur-sm">
+                
+                {/* Dynamic Background Image Layer — Changes automatically with each activeStep */}
+                <div className="absolute inset-0 z-30 pointer-events-none opacity-20 mix-blend-overlay transition-all duration-500">
+                  <img 
+                    src={STEPS[activeStep].image}
+                    alt="" 
+                    className="w-full h-full object-cover object-center" 
+                  />
                 </div>
 
-                {/* Step badge */}
-                <span className="inline-flex items-center gap-2 text-xs font-bold text-[#2F3296] uppercase tracking-widest">
-                  <span className="w-6 h-px bg-[#2F3296]" />
-                  Step {STEPS[activeStep].number}
-                </span>
+                {/* Content Elements wrapped in a relative z-10 index to stay cleanly on top */}
+                <div className="relative z-10 flex flex-col gap-6 w-full">
+                  {/* Icon */}
+                  <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-white text-[#2F3296] shadow-md">
+                    {STEPS[activeStep].icon}
+                  </div>
 
-                {/* Title */}
-                <h3 className="text-3xl font-black text-white leading-tight">
-                  {STEPS[activeStep].title}
-                </h3>
+                  {/* Step badge */}
+                  <span className="inline-flex items-center gap-2 text-xs font-bold text-white uppercase tracking-widest">
+                    <span className="w-6 h-px bg-white" />
+                    Step {STEPS[activeStep].number}
+                  </span>
 
-                {/* Description */}
-                <p className="text-white/70 text-base leading-relaxed">
-                  {STEPS[activeStep].description}
-                </p>
+                  {/* Title */}
+                  <h3 className="text-3xl font-black text-white leading-tight">
+                    {STEPS[activeStep].title}
+                  </h3>
 
-                {/* Progress dots */}
-                <div className="flex gap-2 mt-auto pt-4">
-                  {STEPS.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setActiveStep(i)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        activeStep === i
-                          ? "w-8 bg-[#2F3296]"
-                          : "w-2 bg-zinc-300 hover:bg-[#2F3296]/50"
-                      }`}
-                    />
-                  ))}
+                  {/* Description */}
+                  <p className="text-white/80 text-base leading-relaxed">
+                    {STEPS[activeStep].description}
+                  </p>
+
+                  {/* Progress dots */}
+                  <div className="flex gap-2 mt-auto pt-4">
+                    {STEPS.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveStep(i)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          activeStep === i
+                            ? "w-8 bg-[#2F3296]"
+                            : "w-2 bg-zinc-300 hover:bg-[#2F3296]/50"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -961,23 +981,24 @@ export default function Home() {
             <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
           </div>
 
-          {/* Metrics grid — Fully Mobile Responsive */}
-          <div className="flex flex-col sm:flex-row items-stretch">
+          {/* Metrics grid — Balanced Grid on Mobile, Row on Desktop */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-row sm:items-stretch gap-y-4 sm:gap-y-0">
             {METRICS.map((metric, i) => (
-              <div key={metric.label} className="flex flex-col sm:flex-row flex-1 items-stretch">
+              <div 
+                key={metric.label} 
+                className={`flex flex-col sm:flex-row sm:flex-1 items-stretch ${
+                  i === METRICS.length - 1 ? "col-span-2 sm:col-span-1" : "col-span-1"
+                }`}
+              >
                 
                 {/* Main Metric Card Asset */}
-                <MetricCard metric={metric} started={metricsStarted} />
+                <div className="w-full">
+                  <MetricCard metric={metric} started={metricsStarted} />
+                </div>
                 
-                {/* Inline Adaptive Divider Separation Logic */}
+                {/* High-fidelity Vertical Divider — ONLY shown on Desktop */}
                 {i < METRICS.length - 1 && (
-                  <>
-                    {/* Desktop Mode: High-fidelity Vertical Line */}
-                    <div className="hidden sm:block w-px bg-[#2F3296]/40 self-stretch mx-8" />
-                    
-                    {/* Mobile Mode: Responsive Horizontal Line */}
-                    <div className="block sm:hidden h-px w-full bg-[#2F3296]/30 my-6" />
-                  </>
+                  <div className="hidden sm:block w-px bg-[#2F3296]/40 self-stretch mx-8" />
                 )}
               </div>
             ))}
@@ -1078,7 +1099,7 @@ export default function Home() {
             {ARTICLES.map((article) => (
               <div
                 key={article.title}
-                className="group flex flex-col sm:flex-row hover:bg-zinc-50 hover:scale-[1.01] rounded-3xl border border-[#2F3296]/20 hover:border-[#2F3296] transition-all duration-300 overflow-hidden w-[88%] sm:w-auto flex-shrink-0 snap-center"
+                className="group flex flex-col sm:flex-row  shadow-xl hover:bg-zinc-50 hover:scale-[1.01] rounded-3xl border border-[#2F3296]/20 hover:border-[#2F3296] transition-all duration-300 overflow-hidden w-[88%] sm:w-auto flex-shrink-0 snap-center"
               >
 
                 {/* Cleaned Image Container — left side */}

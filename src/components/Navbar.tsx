@@ -159,7 +159,7 @@ export default function Navbar() {
                           <Link
                             href={child.href}
                             onClick={() => setMobileOpen(false)}
-                            className="block px-10 py-2.5 text-white/85 text-[13px] no-underline hover:bg-white/10 transition-colors duration-100"
+                            className="block px-10 py-2.5 text-[#2F3296] text-[13px] no-underline bg-zinc-5 transition-colors duration-100"
                           >
                             {child.label}
                           </Link>
