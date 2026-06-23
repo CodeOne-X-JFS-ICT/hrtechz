@@ -604,7 +604,7 @@ export default function Home() {
               </h3>
 
               {/* Description */}
-              <p className="text-white/80 group-hover:text-zinc-800 text-sm leading-relaxed mb-5 transition-colors duration-300">
+              <p className="text-white group-hover:text-zinc-800 text-sm leading-relaxed mb-5 transition-colors duration-300">
                 {solution.description}
               </p>
 
