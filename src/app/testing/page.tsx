@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import CTA_Buttons from "@/components/CTA_button";
+import { useState } from "react";
 
 /* Trust badges */
 const TRUST_BADGES = [
@@ -161,6 +163,67 @@ const SOLUTIONS = [
   },
 ];
 
+/* Process Steps */
+const STEPS = [
+  {
+    number: "01",
+    title: "Candidate Submission",
+    description: "Submit candidate details through our secure platform.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="4" y="4" width="20" height="20" rx="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M9 14h10M14 9v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "02",
+    title: "Verification Initiation",
+    description: "Our verification specialists begin the screening process.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="2" />
+        <path d="M14 9v5l3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "03",
+    title: "Information Validation",
+    description: "Data is collected and verified directly from trusted sources.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M5 14l6 6L23 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "04",
+    title: "Quality Assurance Review",
+    description: "Every report undergoes quality checks to ensure accuracy and consistency.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="4" y="4" width="20" height="20" rx="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M9 12h10M9 16h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="20" cy="20" r="4" fill="white" stroke="currentColor" strokeWidth="2" />
+        <path d="M18.5 20l1 1 2-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "05",
+    title: "Final Report Delivery",
+    description: "Receive a comprehensive verification report with actionable insights.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="5" y="3" width="18" height="22" rx="2" stroke="currentColor" strokeWidth="2" />
+        <path d="M9 10h10M9 14h10M9 18h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M18 18l3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+];
+
 /* ─── Interactive Mobile Accordion Card for Benefits ─── */
 function InteractiveBenefitCard({ benefit }: { benefit: { title: string; description: string; icon: React.ReactNode } }) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -223,7 +286,7 @@ function InteractiveBenefitCard({ benefit }: { benefit: { title: string; descrip
 
 export default function TestingPage() {
     const [isOpen, setIsOpen] = React.useState(false);
-
+    const [activeStep, setActiveStep] = useState(0);
 
   return (
     <div
@@ -485,7 +548,230 @@ export default function TestingPage() {
 
             </div>
         </section>
-
+        
+        {/* SECTION 4 — Powered by Verifieze */}
+              <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+                <section className="w-full bg-zinc-30 py-16 lg:py-20 px-6 lg:px-12 border-b border-zinc-200">
+                <div className="w-full max-w-7xl mx-auto">
+                    <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-between">
+                    
+                    {/* ── LEFT SIDE: Large Visual Card Display Area (Optimized min-height bounds for mobile views) ── */}
+                    <div className="w-full lg:w-[48%] flex items-center justify-center bg-white shadow-[#2F3296] rounded-3xl p-6 lg:p-12 shadow-xl min-h-[160px] lg:min-h-[400px] relative overflow-hidden">
+                        {/* Decorative subtle abstract backdrop pattern */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-[#2F3296]/5 pointer-events-none" />
+                        
+                        {/* Core Verifieze Logo Placement (Scaled down bounds cleanly on mobile viewports) */}
+                        <div className="relative w-full max-w-[200px] lg:max-w-sm h-16 lg:h-28 z-10 transition-transform duration-300 hover:scale-105">
+                        <Image
+                            src="/images/verifieze-logo.png"
+                            alt="Verifieze Verification Arm"
+                            fill
+                            className="object-contain"
+                        />
+                        </div>
+                    </div>
+        
+                    {/* ── RIGHT SIDE: Context Typography Content & Compliance Checklist ── */}
+                    <div className="w-full lg:w-[48%] flex flex-col text-center lg:text-left items-center lg:items-start gap-5">
+                        {/* Logo placeholder — Centered on mobile viewports */}
+                        <div className="relative w-52 h-16 mx-auto lg:mx-0">
+                        <p className="text-zinc-600 text-md font-semibold tracking-[0.18em] uppercase mb-8 gap-2">
+                            Powered by
+                            <Image
+                            src="/images/verifieze-logo.png"
+                            alt="Verifieze"
+                            fill
+                            className="object-contain object-center lg:object-left brightness-500 invert"
+                            />
+                        </p>
+                        </div>
+                        
+                        {/* Core Headline — Centered on mobile viewports */}
+                        <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight text-center lg:text-left w-full">
+                        Trusted Verification{" "}
+                        <span className="underline decoration-[#2F3296] underline-offset-4 text-[#2F3296]">
+                            Specialists
+                        </span>
+                        </h2>
+        
+                        {/* Clean Subheadline Description Paragraph — Justified on mobile, standard layout on desktop */}
+                        <p className="text-black/75 text-lg leading-relaxed text-justify lg:text-left">
+                        Verifieze is the dedicated verification arm of HRTECHZ,
+                        delivering reliable screening services for organisations
+                        across multiple industries. Our commitment to accuracy,
+                        speed, and compliance sets us apart.
+                        </p>
+        
+                        {/* Dynamic Compliance Validation Checks Grid Stack */}
+                        <ul className="flex flex-col gap-3.5 mt-2 w-full">
+                        {[
+                            "Fast Turnaround Times",
+                            "High Verification Accuracy",
+                            "Secure Digital Reports",
+                            "Dedicated Support Team",
+                        ].map((checkItem) => (
+                            <li
+                            key={checkItem}
+                            className="flex items-center gap-3 text-zinc-800 text-md font-bold tracking-wide"
+                            >
+                            {/* Dynamic Clean Brand Blue Check Circle Icon */}
+                                <span className="w-5 h-5 flex items-center justify-center rounded-full bg-[#2F3296]/10 border border-[#2F3296]/30 text-[#2F3296] flex-shrink-0 shadow-sm">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-current" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                                </span>
+                            {checkItem}
+                            </li>
+                        ))}
+                        </ul>
+        
+                    </div>
+        
+                    </div>
+                </div>
+                </section>
+        
+              {/* SECTION 5 — Our Verification Process */}
+              <section className="w-full bg-zinc-50 py-12 lg:py-10 px-6 lg:px-12">
+                <div className="w-full max-w-7xl mx-auto">
+        
+                  {/* Header */}
+                  <div className="text-center mb-10 lg:mb-14">
+                    <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-4">
+                      Our Process
+                    </p>
+                    <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight">
+                      How{" "}
+                      <span className="text-[#2F3296]">Verification</span>{" "}
+                      Works
+                    </h2>
+                    <p className="text-zinc-500 text-base lg:text-lg mt-3 max-w-2xl mx-auto">
+                      A streamlined, transparent five-step process designed for
+                      accuracy, speed, and complete peace of mind.
+                    </p>
+                    <div className="mx-auto mt-4 w-16 h-1 rounded-full bg-[#2F3296]" />
+                  </div>
+        
+                  {/* Two-column — steps list left, detail right */}
+                  <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
+        
+                    {/* LEFT — Clickable step list track (Upgraded to clear horizontal swipe selection bar on mobile touch views) */}
+                    <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-3 lg:pb-0 scrollbar-none snap-x snap-mandatory -mx-6 px-6 lg:mx-0 lg:px-0 flex-1">
+                      {STEPS.map((step, i) => (
+                        <button
+                          key={step.title}
+                          onClick={() => setActiveStep(i)}
+                          className={`group flex items-center gap-4 lg:gap-5 p-4 lg:p-5 rounded-2xl border shadow-[#2F3296] shadow-sm text-left transition-all duration-300 flex-shrink-0 w-[80%] sm:w-[45%] lg:w-full snap-center
+                            ${
+                              activeStep === i
+                                ? "bg-[#2F3296] border-[#2F3296] shadow-lg"
+                                : "bg-white border-zinc-200 hover:border-[#2F3296] hover:bg-[#2F3296]/5"
+                            }`}
+                        >
+                          {/* Number badge */}
+                          <span
+                            className={`flex-shrink-0 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-xl text-sm lg:text-base font-black transition-colors duration-300
+                              ${
+                                activeStep === i
+                                  ? "bg-white text-[#2F3296]"
+                                  : "bg-[#2F3296]/10 text-[#2F3296] group-hover:bg-[#2F3296] group-hover:text-white"
+                              }`}
+                          >
+                            {step.number}
+                          </span>
+        
+                          {/* Title */}
+                          <div className="flex-1 min-w-0">
+                            <p
+                              className={`font-bold text-sm lg:text-base truncate lg:whitespace-normal transition-colors duration-300 ${
+                                activeStep === i ? "text-white" : "text-black group-hover:text-[#2F3296]"
+                              }`}
+                            >
+                              {step.title}
+                            </p>
+                          </div>
+        
+                          {/* Arrow (Hidden on mobile row to preserve space) */}
+                          <svg
+                            width="18" height="18" viewBox="0 0 18 18" fill="none"
+                            className={`hidden lg:block flex-shrink-0 transition-all duration-300 ${
+                              activeStep === i ? "text-white translate-x-1" : "text-zinc-300 group-hover:text-[#2F3296]"
+                            }`}
+                          >
+                            <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                      ))}
+                    </div>
+        
+                    {/* Vertical divider */}
+                    <div className="hidden lg:block w-px bg-[#2F3296] self-stretch mx-2" />
+        
+                    {/* RIGHT — active step detail */}
+                    <div className="flex-1 flex items-center mt-2 lg:mt-0">
+                    <div className="w-full min-h-[380px] lg:min-h-[440px] rounded-3xl p-6 lg:p-10 flex flex-col gap-5 lg:gap-6 shadow-xl relative overflow-hidden bg-white border border-zinc-200">
+                        
+                        {/* Clean White Linear-to-Radial Fade Mask */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#2F3296]/50 via-white/50 to-white/40 z-0" />
+                        <div className="absolute inset-0 bg-[#2F3296] mix-blend-overlay z-0" />
+        
+                        {/* ── INNER TEXT DATA CONTENT CONTAINER ── */}
+                        <div className="relative z-10 flex flex-col gap-4 lg:gap-5 h-full w-full justify-between flex-1">
+                        
+                        {/* Icon Row (Swapped text to theme blue to pop on white) */}
+                        <div className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-[#2F3296]/10 text-[#2F3296] border border-[#2F3296]/20 backdrop-blur-sm shadow-sm">
+                            {STEPS[activeStep].icon}
+                        </div>
+        
+                        {/* Step Badge Metadata */}
+                        <span className="inline-flex items-center gap-2 text-xs font-bold text-zinc-900 uppercase tracking-widest mt-1 lg:mt-2">
+                            <span className="w-6 h-px bg-black" />
+                            Step {STEPS[activeStep].number} of {STEPS.length}
+                        </span>
+        
+                        {/* Title */}
+                        <h3 className="text-xl lg:text-3xl font-black text-black uppercase tracking-tight">
+                            {STEPS[activeStep].title}
+                        </h3>
+        
+                        {/* Description */}
+                        <span className="flex items-center gap-3 text-zinc-800 text-sm lg:text-md font-medium lg:font-bold tracking-wide leading-relaxed">
+                            {STEPS[activeStep].description}
+                        </span>
+        
+                        {/* Progress & UI Controls Track */}
+                        <div className="mt-auto pt-3 lg:pt-4 w-full">
+                            <div className="flex justify-between text-xs text-zinc-600 font-medium mb-2">
+                            <span>Module Progress</span>
+                            <span>{Math.round(((activeStep + 1) / STEPS.length) * 100)}%</span>
+                            </div>
+                            <div className="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-black rounded-full transition-all duration-500 ease-out"
+                                style={{ width: `${((activeStep + 1) / STEPS.length) * 100}%` }}
+                            />
+                            </div>
+                        </div>
+        
+                        {/* Navigation dots */}
+                        <div className="flex gap-2 pt-1 lg:pt-2">
+                            {STEPS.map((_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setActiveStep(i)}
+                                className={`h-2 rounded-full transition-all duration-300 ${
+                                activeStep === i ? "w-8 bg-[#2F3296]" : "w-2 bg-zinc-200 hover:bg-zinc-300"
+                                }`}
+                            />
+                            ))}
+                        </div>
+                        </div>
+        
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
     </div>
   );
 }
