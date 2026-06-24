@@ -224,6 +224,92 @@ const STEPS = [
   },
 ];
 
+/* Industries */
+const INDUSTRIES = [
+  { label: "Information Technology", icon: "🗹" },
+  { label: "Banking & Financial Services", icon: "🗹" },
+  { label: "Telecommunication", icon: "🗹" },
+  { label: "Manufacturing", icon: "🗹" },
+  { label: "Retail", icon: "🗹" },
+  { label: "Healthcare", icon: "🗹" },
+  { label: "Hospitality", icon: "🗹" },
+  { label: "Logistics", icon: "🗹" },
+  { label: "BPO & Shared Services", icon: "🗹" },
+  { label: "Education", icon: "🗹" },
+];
+
+/* Why Choose reasons */
+const REASONS = [
+  {
+    title: "Reliable Results",
+    description:
+      "Accurate verification processes supported by experienced professionals.",
+    icon: (
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <path
+          d="M4 15l7 7L26 8"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    title: "Faster Hiring",
+    description:
+      "Reduce delays and make informed hiring decisions quickly.",
+    icon: (
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <circle cx="15" cy="15" r="11" stroke="currentColor" strokeWidth="2" />
+        <path d="M15 9v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    title: "Scalable Services",
+    description:
+      "Support for startups, SMEs, and enterprise organizations.",
+    icon: (
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <rect x="3" y="18" width="6" height="9" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="12" y="12" width="6" height="15" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="21" y="5" width="6" height="22" rx="1" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    ),
+  },
+  {
+    title: "Compliance Driven",
+    description:
+      "Verification processes aligned with industry standards and best practices.",
+    icon: (
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <path
+          d="M15 3l11 4v9c0 6-5 10-11 11-6-1-11-5-11-11V7l11-4z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <path d="M10 15l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    title: "Integrated HR Ecosystem",
+    description:
+      "Seamlessly connected with HRTECHZ Hiring and Technology solutions.",
+    icon: (
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <circle cx="8"  cy="15" r="4" stroke="currentColor" strokeWidth="2" />
+        <circle cx="22" cy="8"  r="4" stroke="currentColor" strokeWidth="2" />
+        <circle cx="22" cy="22" r="4" stroke="currentColor" strokeWidth="2" />
+        <path d="M12 15h2m4-5l-2 2m0 6l2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+];
+
 /* ─── Interactive Mobile Accordion Card for Benefits ─── */
 function InteractiveBenefitCard({ benefit }: { benefit: { title: string; description: string; icon: React.ReactNode } }) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -772,6 +858,130 @@ export default function TestingPage() {
                   </div>
                 </div>
               </section>
+              
+              {/* SECTION 6 — Industries We Support */}
+      <section className="w-full bg-black py-10 px-6 lg:px-12">
+        <div className="w-full max-w-7xl mx-auto">
+
+          {/* Header */}
+          <div className="text-center mb-14">
+            <p className="text-white text-md font-semibold tracking-[0.18em] uppercase mb-4">
+              Industries We Support
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
+              Trusted Across{" "}
+              <span className="underline decoration-zinc-300 underline-offset-4 text-[#2F3296]">
+                Every Sector
+              </span>
+            </h2>
+            <p className="text-zinc-300 text-lg mt-4 max-w-2xl mx-auto">
+              Our verification services are trusted by organisations across
+              a wide range of industries throughout Sri Lanka and beyond.
+            </p>
+            <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+
+          {/* 5×2 industry grid — Fixed layout toggles to single column on mobile viewports */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+            {INDUSTRIES.map((industry) => (
+              <button
+                key={industry.label}
+                className="group flex items-center gap-3 rounded-xl px-4 py-3 border text-left shadow-lg bg-[#2F3296]/20 border-zinc-200 text-white hover:border-zinc-300 hover:scale-[1.02] transition-all duration-300 cursor-pointer w-full"
+              >
+                <span className="text-xl flex-shrink-0">{industry.icon}</span>
+                <span className="text-sm font-semibold leading-snug">
+                  {industry.label}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7 — Why Choose HRTECHZ Testing */}
+      <hr className="border-t border-zinc-900" />
+      <section className="w-full bg-black py-10 lg:py-24 px-6 lg:px-12 relative overflow-hidden">
+        
+        {/* Ambient Neon Radial Glow Blur */}
+        <div className="absolute top-1/3 left-1/4 -translate-x-1/2 w-[400px] h-[400px] bg-[#2F3296]/15 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="w-full max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+            
+            {/* ── LEFT SIDE: Sticky / Pinned Headline Column (40% Width) ── */}
+            <div className="w-full lg:w-[35%] lg:sticky lg:top-24 flex flex-col items-center lg:items-start text-center lg:text-left gap-4">
+              <p className="text-white text-md font-semibold tracking-[0.18em] uppercase mb-1">
+                Why Choose Us
+              </p>
+              
+              {/* DESKTOP HEADLINE (Preserves Break lines layout completely) */}
+              <h2 className="hidden lg:block text-5xl font-bold text-white leading-tight tracking-tight">
+                Why <br /> Organizations<br /> Choose<br />{" "}
+                <span className="relative inline-block text-[#2F3296]">
+                  HRTECHZ
+                  <span className="absolute left-0 bottom-1 h-[4px] w-full bg-white/40 rounded-full" />
+                </span>{" "}<br />
+                Testing
+              </h2>
+
+              {/* MOBILE HEADLINE (Completely flat and clean line breaks layout tracking) */}
+              <h2 className="block lg:hidden text-3xl font-bold text-white leading-tight tracking-tight text-center">
+                Why Organizations Choose{" "}
+                <span className="relative inline-block text-[#2F3296]">
+                  HRTECHZ
+                  <span className="absolute left-0 bottom-1 h-[2px] w-full bg-white/40 rounded-full" />
+                </span>{" "}
+                Testing
+              </h2>
+
+              <p className="text-zinc-300 text-sm lg:text-base mt-2 max-w-md leading-relaxed text-justify lg:text-left">
+                Delivering enterprise-grade accuracy, uncompromised background checks, and automated screening workflows to safeguard your workplace integrity.
+              </p>
+            </div>
+
+            {/* ── RIGHT SIDE: Grid Track (with responsive fluid touch swipe structures on mobile) ── */}
+            <div className="w-full lg:w-[65%] flex lg:grid flex-row lg:grid-cols-2 gap-5 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 lg:mx-0 lg:px-0 items-stretch">
+              {REASONS.map((reason, index) => {
+                const formattedNumber = String(index + 1).padStart(2, "0");
+                
+                return (
+                  <div
+                    key={reason.title}
+                    className={`group relative flex flex-col justify-between gap-5 bg-[#2F3296]/20 border border-white/5 hover:border-[#2F3296]/60 rounded-3xl p-6 lg:p-8 transition-all duration-300 overflow-hidden cursor-default shadow-sm hover:shadow-[0_0_30px_rgba(47,50,150,0.15)] flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center
+                      ${index === 4 ? "lg:col-span-2" : ""} 
+                    `}
+                  >
+                    {/* Giant Sliding Background Watermark Number */}
+                    <span className="absolute -bottom-4 right-4 text-7xl lg:text-8xl font-black text-white/10 group-hover:text-[#2F3296]/80 leading-none select-none tracking-tighter transition-all duration-500 transform group-hover:-translate-y-3">
+                      {formattedNumber}
+                    </span>
+
+                    {/* Icon & Title Row */}
+                    <div className="flex flex-col gap-4 relative z-10 text-left">
+                      <div className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-zinc-400 group-hover:bg-[#2F3296] group-hover:text-white group-hover:border-[#2F3296] transition-all duration-300 shadow-inner">
+                        {reason.icon}
+                      </div>
+                      
+                      <h3 className="text-white font-black text-lg lg:text-xl uppercase tracking-tight group-hover:text-[#2F3296] transition-colors duration-200">
+                        {reason.title}
+                      </h3>
+                    </div>
+
+                    {/* Description Content Layer */}
+                    <p className="text-zinc-300 group-hover:text-zinc-300 text-sm leading-relaxed text-left relative z-10 mt-2">
+                      {reason.description}
+                    </p>
+
+                    {/* Micro Accent Edge Tracker line */}
+                    <div className="absolute left-0 bottom-0 w-0 group-hover:w-full h-1 bg-gradient-to-r from-[#2F3296] to-transparent transition-all duration-500 rounded-b-3xl" />
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
