@@ -4,7 +4,8 @@ import React from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import CTA_Buttons from "@/components/CTA_button";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import Footer from "@/components/footer";
 
 /* Trust badges */
 const TRUST_BADGES = [
@@ -310,6 +311,49 @@ const REASONS = [
   },
 ];
 
+/* Success Metrics */
+const METRICS = [
+  { value: 50000, suffix: "+", label: "Verification Checks Completed", prefix: "" },
+  { value: 98, suffix: "%", label: "Verification Accuracy", prefix: "" },
+  { value: 500, suffix: "+", label: "Corporate Clients Supported", prefix: "" },
+  { value: 24, suffix: "h", label: "Digital Support", prefix: "" },
+];
+
+const HIGHLIGHTS = [
+  {
+    title: "Multi-Industry Expertise",
+    description: "Tailored validation parameters spanning across banking, IT, retail, and manufacturing sectors.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+      </svg>
+    ),
+  },
+];
+
+/* Related Solutions Data Block */
+const RELATED_SOLUTIONS = [
+  {
+    title: "Hiring",
+    description: "Find and recruit top talent through JobFactory and SourceOne.",
+    tagline: "Talent Acquisition",
+    href: "/hiring",
+  },
+  {
+    title: "Testing",
+    description: "Verify candidate credentials and reduce hiring risks through Verifieze.",
+    tagline: "Background Screening",
+    href: "/testing",
+    active: true, // Highlights the current division area
+  },
+  {
+    title: "Technology",
+    description: "Transform HR operations through CodeOne-X technology solutions.",
+    tagline: "Digital Transformation",
+    href: "/technology",
+  },
+];
+
 /* ─── Interactive Mobile Accordion Card for Benefits ─── */
 function InteractiveBenefitCard({ benefit }: { benefit: { title: string; description: string; icon: React.ReactNode } }) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -370,9 +414,77 @@ function InteractiveBenefitCard({ benefit }: { benefit: { title: string; descrip
   );
 }
 
+/* Animated counter hook */
+function useCountUp(target: number, duration = 2000, started: boolean) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!started) return;
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // Ease-out
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [target, duration, started]);
+
+  return count;
+}
+
+/* Single metric card */
+function MetricCard({
+  metric,
+  started,
+}: {
+  metric: (typeof METRICS)[0];
+  started: boolean;
+}) {
+  const count = useCountUp(metric.value, 2000, started);
+
+  const display =
+    metric.value >= 1000
+      ? count >= 1000
+        ? (count / 1000).toFixed(0) + "k"
+        : count.toString()
+      : count.toString();
+
+  return (
+    <div className="group flex flex-col items-center justify-center text-center p-6 transition-all duration-300 cursor-default">
+      <span className="text-4xl lg:text-5xl font-black text-[#2F3296] group-hover:text-black transition-colors duration-300 leading-none">
+        {metric.prefix}
+        {display}
+        {metric.suffix}
+      </span>
+      <span className="mt-3 text-sm font-semibold text-black/70 group-hover:text-[#2F3296] transition-colors duration-300 leading-snug">
+        {metric.label}
+      </span>
+    </div>
+  );
+}
+
 export default function TestingPage() {
     const [isOpen, setIsOpen] = React.useState(false);
     const [activeStep, setActiveStep] = useState(0);
+    const [metricsStarted, setMetricsStarted] = useState(false);
+    const metricsRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setMetricsStarted(true);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      if (metricsRef.current) observer.observe(metricsRef.current);
+      return () => observer.disconnect();
+    }, []);
 
   return (
     <div
@@ -547,7 +659,7 @@ export default function TestingPage() {
                     className="w-[85%] sm:w-[48%] lg:w-auto h-[480px] lg:h-[420px] flex-shrink-0 snap-center rounded-3xl overflow-hidden shadow-md relative group cursor-pointer bg-[#090A1E] border border-white/10"
                     >
                     
-                    {/* ── BACKGROUND IMAGE LAYER (Smoothly blurs and darkens on hover) ── */}
+                    {/* ── BACKGROUND IMAGE LAYER ── */}
                     <img
                         src={solution.bgImage}
                         alt={solution.title}
@@ -859,7 +971,7 @@ export default function TestingPage() {
                 </div>
               </section>
               
-              {/* SECTION 6 — Industries We Support */}
+      {/* SECTION 6 — Industries We Support */}
       <section className="w-full bg-black py-10 px-6 lg:px-12">
         <div className="w-full max-w-7xl mx-auto">
 
@@ -982,6 +1094,198 @@ export default function TestingPage() {
           </div>
         </div>
       </section>
+      {/* SECTION 8 — Success Metrics */}
+      <section className="w-full bg-white py-10 lg:py-24 px-6 lg:px-12 relative overflow-hidden">
+        {/* Soft Ambient Brand Glow Behind Metrics */}
+        <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-[#2F3296]/10 blur-[100px] rounded-full pointer-events-none" />
+
+        <div className="w-full max-w-7xl mx-auto relative z-10">
+          
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-1">
+              Performance Track
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight tracking-tight">
+              Our <span className="relative inline-block text-[#2F3296]">Success</span> Metrics
+            </h2>
+            <div className="mx-auto mt-4 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+
+          {/* ── METRICS GRID TRACK (Balanced 2x2 Grid on Mobile / Fluid Flex Row on Desktop) ── */}
+          <div 
+            ref={metricsRef} 
+            className="grid grid-cols-2 divide-x divide-y divide-[#2F3296]/20 sm:divide-x-0 sm:divide-y-0 sm:flex sm:flex-row sm:items-stretch mb-16 border-b border-r border-[#2F3296]/10 sm:border-0"
+          >
+            {METRICS.map((metric, i) => (
+              <div 
+                key={metric.label} 
+                className={`flex flex-col sm:flex-row sm:flex-1 items-stretch col-span-1
+                  /* Reset top/left borders for the first row/column cells to align perfectly */
+                  ${i < 2 ? "!border-t-0" : ""}
+                  ${i % 2 === 0 ? "!border-l-0" : ""}
+                `}
+              >
+                {/* Main Metric Card Asset */}
+                <div className="w-full">
+                  <MetricCard metric={metric} started={metricsStarted} />
+                </div>
+                
+                {/* High-fidelity Vertical Divider — ONLY shown on Desktop */}
+                {i < METRICS.length - 1 && (
+                  <div className="hidden sm:block w-px bg-[#2F3296]/30 self-stretch mx-4" />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Row: Support & Expertise Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6 max-w-4xl mx-auto w-full">
+            {HIGHLIGHTS.map((item) => (
+              <div 
+                key={item.title}
+                className="group flex gap-5 bg-white border border-[#2F3296]/25 shadow-md shadow-[#2F3296] :hover:border-[#2F3296]/40 rounded-3xl p-6 lg:p-8 transition-all duration-300 items-start text-left hover:scale-[1.02]"
+              >
+                <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-2xl bg-white/5 border border-black/40 text-[#2F3296] group-hover:text-black transition-all duration-300 shadow-inner">
+                  {item.icon}
+                </div>
+                <div>
+                  <h4 className="text-black font-black text-md lg:text-lg uppercase tracking-tight mb-1 group-hover:text-[#2F3296] transition-colors duration-200">
+                    {item.title}
+                  </h4>
+                  <p className="text-black/50 text-xs lg:text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9 — Related HRTECHZ Solutions */}
+      <section className="w-full bg-white pb-10 lg:pb-24 pt-6 lg:pt-10 px-6 lg:px-12 relative overflow-hidden">
+        {/* Subtle Brand Blue Ambient Glow Base */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#2F3296]/5 blur-[150px] rounded-full pointer-events-none" />
+
+        <div className="w-full max-w-7xl mx-auto relative z-10">
+
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <p className="text-[#2F3296] text-md font-black tracking-[0.25em] uppercase mb-4">
+              Ecosystem Overview
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-black tracking-tight">
+              Related <span className="text-[#2F3296]">HRTECHZ</span> Solutions
+            </h2>
+            <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+
+          {/* Solutions Interactive Cards Track — with swappable touch rows for mobile views */}
+          <div className="flex lg:grid flex-row lg:grid-cols-3 gap-5 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 lg:mx-0 lg:px-0 items-stretch">
+            {RELATED_SOLUTIONS.map((solution, index) => {
+              const formattedNumber = String(index + 1).padStart(2, "0");
+              
+              return (
+                <div
+                  key={solution.title}
+                  className={`group relative flex flex-col justify-between gap-6 rounded-3xl p-6 lg:p-8 border transition-all duration-300 overflow-hidden text-left flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center
+                    ${solution.active 
+                      ? "bg-[#2F3296]/10 border-[#2F3296] shadow-[0_0_40px_rgba(47,50,150,0.1)]" 
+                      : "bg-zinc-50 border-zinc-300 hover:border-[#2F3296]/30"
+                    }
+                  `}
+                >
+                  {/* Giant Sliding Background Watermark Number */}
+                  <span className="absolute -bottom-4 right-4 text-7xl lg:text-8xl font-black text-black/20 group-hover:text-[#2F3296]/20 leading-none select-none tracking-tighter transition-all duration-500 transform group-hover:-translate-y-3">
+                    {formattedNumber}
+                  </span>
+
+                  {/* Active Indicator Micro Ring — Hidden on mobile, visible on desktop */}
+                    {solution.active && (
+                    <span className="hidden lg:inline-block absolute top-4 right-4 bg-[#2F3296]/20 text-[#2F3296] border border-[#2F3296]/30 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest z-20">
+                        Current Module
+                    </span>
+                    )}
+
+                  {/* Content Block */}
+                  <div className="flex flex-col gap-3 relative z-10">
+                    <span className="text-xs font-bold tracking-widest text-zinc-400 uppercase">
+                      {solution.tagline}
+                    </span>
+                    <h3 className="text-zinc-900 font-black text-2xl lg:text-3xl uppercase tracking-tight group-hover:text-[#2F3296] transition-colors duration-200">
+                      {solution.title}
+                    </h3>
+                    <p className="text-zinc-600 text-sm leading-relaxed mt-1">
+                      {solution.description}
+                    </p>
+                  </div>
+
+                  {/* Interactive Action Trigger Link */}
+                  <div className="pt-4 border-t border-zinc-200/60 mt-auto flex justify-between items-center w-full relative z-10">
+                    <Link 
+                      href={solution.href}
+                      className="text-xs font-bold tracking-widest uppercase text-zinc-800 group-hover:text-[#2F3296] transition-colors duration-200 inline-flex items-center gap-2"
+                    >
+                      Explore System
+                    </Link>
+                    <svg 
+                      width="16" height="16" viewBox="0 0 16 16" fill="none" 
+                      className="text-zinc-400 group-hover:text-[#2F3296] group-hover:translate-x-1 transition-all duration-200"
+                    >
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+
+                  {/* Micro Accent Edge Tracker line path */}
+                  <div className="absolute left-0 bottom-0 w-0 group-hover:w-full h-1 bg-gradient-to-r from-[#2F3296] to-transparent transition-all duration-500 rounded-b-3xl" />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10 — Call to Action */}
+            <section className="w-full bg-zinc-800 py-10 px-6 lg:px-12 relative overflow-hidden">
+      
+              {/* Decorative background circles */}
+              <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/5 pointer-events-none" />
+              <div className="absolute -bottom-24 -left-16 w-96 h-96 rounded-full bg-white/5 pointer-events-none" />
+              <div className="absolute top-10 right-40 w-40 h-40 rounded-full bg-white/5 pointer-events-none" />
+      
+              <div className="relative w-full max-w-4xl mx-auto text-center">
+      
+                {/* Eyebrow */}
+                <p className="text-white text-md font-semibold tracking-[0.18em] uppercase mb-5">
+                  Get Started Today
+                </p>
+      
+                {/* Heading */}
+                <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                  Ready to Make{" "}
+                  <span className="text-[#2F3296] relative inline-block">
+                    Better Hiring Decisions
+                    <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-white/40 rounded-full" />
+                  </span>
+                  ?
+                </h2>
+      
+                {/* Subtext */}
+                <p className="text-white/85 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+                  Strengthen your recruitment process with trusted verification and screening services from HRTECHZ.
+                </p>
+      
+                {/* CTA buttons */}
+                  <CTA_Buttons
+                  primaryText="Talk to an Expert"
+                  primaryHref="/consultation"
+                  secondaryText="Request a Demo"
+                  secondaryHref="/demo"
+                  />
+              </div>
+            </section>
+      <Footer />
     </div>
   );
 }
