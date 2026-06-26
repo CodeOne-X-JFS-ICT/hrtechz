@@ -95,12 +95,11 @@ const SOLUTIONS = [
       "Validate candidate records across multiple dimensions to build a complete and accurate profile.",
     items: [
       "Address Verification",
-      "Academic Credentials",
-      "Professional Qualifications",
-      "Employment History",
-      "Education",
-      "Identity",
-      "Driving Qualifications",
+      "Academic Credentials Verification",
+      "Professional Qualifications Verification",
+      "Employment History Verification",
+      "Education Verification",
+      "Identity Verification",
     ],
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -344,7 +343,6 @@ const RELATED_SOLUTIONS = [
     description: "Verify candidate credentials and reduce hiring risks through Verifieze.",
     tagline: "Background Screening",
     href: "/testing",
-    active: true, // Highlights the current division area
   },
   {
     title: "Technology",
@@ -354,61 +352,32 @@ const RELATED_SOLUTIONS = [
   },
 ];
 
-/* ─── Interactive Mobile Accordion Card for Benefits ─── */
+/* ─── Responsive Benefit Card for Section 2 ─── */
 function InteractiveBenefitCard({ benefit }: { benefit: { title: string; description: string; icon: React.ReactNode } }) {
-  const [isOpen, setIsOpen] = React.useState(false);
-
   return (
     <div
-      onClick={() => setIsOpen(!isOpen)}
-      className={`group flex flex-col gap-3 lg:gap-4 bg-[#2F3296]/20 border rounded-2xl p-5 lg:p-6 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer select-none
-        ${isOpen ? "bg-white/90 border-[#2F3296]" : "text-black border-white/20 hover:border-[#2F3296] lg:hover:bg-white/80"}
-      `}
+      className="group flex flex-col gap-3 lg:gap-4 bg-[#2F3296]/20 border border-white/20 hover:border-[#2F3296] lg:hover:bg-white/80 rounded-2xl p-5 lg:p-6 shadow-sm hover:shadow-md transition-all duration-300 cursor-default select-none flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center"
     >
-      {/* Icon + Chevron Layout Wrapper */}
+      {/* Icon Wrapper */}
       <div className="flex items-center justify-between">
-        <div className={`w-11 h-11 flex items-center justify-center rounded-xl bg-[#2F3296] text-black transition-all duration-300
-          lg:group-hover:bg-[#2F3296] lg:group-hover:text-white
-          ${isOpen ? "bg-[#2F3296] text-white" : ""}
-        `}>
+        <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-[#2F3296] text-black transition-all duration-300 lg:group-hover:bg-[#2F3296] lg:group-hover:text-white">
           {benefit.icon}
-        </div>
-
-        {/* Mobile Accordion Chevron Trigger */}
-        <div className={`block lg:hidden transition-transform duration-300 ${isOpen ? "rotate-180 text-[#2F3296]" : "text-white/40"}`}>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 7.5l5 5 5-5" />
-          </svg>
         </div>
       </div>
 
       {/* Benefit Title */}
-      <h3 className={`text-xl font-bold text-left transition-colors duration-300
-        lg:group-hover:text-[#2F3296]
-        ${isOpen ? "text-[#2F3296]" : "text-white"}
-      `}>
+      <h3 className="text-xl font-bold text-left text-white lg:group-hover:text-[#2F3296] transition-colors duration-300">
         {benefit.title}
       </h3>
 
-      {/* Description Area — CSS Accordion Slide Animation */}
-      <div className={`transition-all duration-300 ease-in-out overflow-hidden text-left
-        lg:h-auto lg:opacity-100 lg:visible
-        ${isOpen ? "max-h-[200px] opacity-100 visible mt-1" : "max-h-0 opacity-0 lg:max-h-none invisible lg:visible"}
-      `}>
-        <p className={`text-sm leading-relaxed text-justify lg:text-left
-          lg:group-hover:text-zinc-800
-          ${isOpen ? "text-zinc-800" : "text-white/50"}
-        `}>
-          {benefit.description}
-        </p>
-      </div>
+      {/* Description Area */}
+      <p className="text-sm leading-relaxed text-left text-white/60 lg:group-hover:text-zinc-800 transition-colors duration-300">
+        {benefit.description}
+      </p>
 
       {/* Animated Card Footer bar */}
       <div className="mt-auto pt-2 border-t border-zinc-100/10 lg:border-zinc-100">
-        <div className={`h-0.5 bg-[#2F3296] rounded-full transition-all duration-500
-          lg:w-0 lg:group-hover:w-full
-          ${isOpen ? "w-full" : "w-0"}
-        `} />
+        <div className="h-0.5 bg-[#2F3296] rounded-full transition-all duration-500 lg:w-0 lg:group-hover:w-full w-0" />
       </div>
     </div>
   );
@@ -471,6 +440,40 @@ export default function TestingPage() {
     const [activeStep, setActiveStep] = useState(0);
     const [metricsStarted, setMetricsStarted] = useState(false);
     const metricsRef = useRef<HTMLDivElement>(null);
+    
+    // ── BENEFITS TRACKING (Section 2) ──
+    const [activeBenefitIndex, setActiveBenefitIndex] = useState(0);
+    const benefitScrollRef = useRef<HTMLDivElement>(null);
+
+    const handleBenefitScroll = () => {
+      if (benefitScrollRef.current) {
+        const { scrollLeft, clientWidth } = benefitScrollRef.current;
+        const index = Math.round(scrollLeft / (clientWidth * 0.85));
+        setActiveBenefitIndex(index);
+      }
+    };
+
+    // State & Refs for Sections 3, 7, and 9 Scroll Tracking
+    const [activeSolutionIndex, setActiveSolutionIndex] = useState(0);
+    const solutionScrollRef = useRef<HTMLDivElement>(null);
+
+    const [activeReasonIndex, setActiveReasonIndex] = useState(0);
+    const reasonScrollRef = useRef<HTMLDivElement>(null);
+
+    const [activeRelatedIndex, setActiveRelatedIndex] = useState(0);
+    const relatedScrollRef = useRef<HTMLDivElement>(null);
+
+    // Reusable scroll math compiler helper function
+    const handleScrollTracking = (
+      scrollRef: React.RefObject<HTMLDivElement | null>,
+      setIndexState: React.Dispatch<React.SetStateAction<number>>
+    ) => {
+      if (scrollRef.current) {
+        const { scrollLeft, clientWidth } = scrollRef.current;
+        const index = Math.round(scrollLeft / (clientWidth * 0.85));
+        setIndexState(index);
+      }
+    };
 
     useEffect(() => {
       const observer = new IntersectionObserver(
@@ -623,11 +626,29 @@ export default function TestingPage() {
                 </div>
             </div>
 
-            {/* ── BENEFITS GRID ── */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {BENEFITS.map((benefit) => (
-                <InteractiveBenefitCard key={benefit.title} benefit={benefit} />
-            ))}
+            {/* ── BENEFITS GRID: Swappable Row on Mobile / Standard Grid on Desktop ── */}
+            <div className="relative w-full">
+              <div 
+                ref={benefitScrollRef}
+                onScroll={handleBenefitScroll}
+                className="flex flex-row lg:grid lg:grid-cols-3 gap-5 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 lg:px-0 lg:mx-auto"
+              >
+                {BENEFITS.map((benefit) => (
+                  <InteractiveBenefitCard key={benefit.title} benefit={benefit} />
+                ))}
+              </div>
+
+              {/* Mobile Carousel Page Indicators UI — Hidden completely on Desktop */}
+              <div className="flex lg:hidden items-center justify-center gap-2 mt-2 w-full">
+                {BENEFITS.map((_, dotIdx) => (
+                  <div
+                    key={dotIdx}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeBenefitIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-700"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
         </div>
         </section>
@@ -652,13 +673,17 @@ export default function TestingPage() {
             </div>
 
             {/* Solutions Grid Track */}
-                <div className="flex flex-row lg:grid lg:grid-cols-2 gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 lg:px-0 lg:mx-auto">
+                <div className="relative w-full">
+              <div 
+                ref={solutionScrollRef}
+                onScroll={() => handleScrollTracking(solutionScrollRef, setActiveSolutionIndex)}
+                className="flex flex-row lg:grid lg:grid-cols-2 gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 lg:px-0 lg:mx-auto"
+              >
                 {SOLUTIONS.map((solution) => (
-                    <div
+                  <div
                     key={solution.title}
                     className="w-[85%] sm:w-[48%] lg:w-auto h-[480px] lg:h-[420px] flex-shrink-0 snap-center rounded-3xl overflow-hidden shadow-md relative group cursor-pointer bg-[#090A1E] border border-white/10"
-                    >
-                    
+                  >
                     {/* ── BACKGROUND IMAGE LAYER ── */}
                     <img
                         src={solution.bgImage}
@@ -673,7 +698,7 @@ export default function TestingPage() {
                         
                         {/* TOP BLOCK: Icon & Watermark Number (Stays visible) */}
                         <div className="flex justify-between items-start w-full">
-                        <div className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-white/10 text-white border border-white/20 backdrop-blur-sm group-hover:bg-[#2F3296] group-hover:border-[#2F3296] transition-all duration-300">
+                        <div className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-2xl bg-white/10 text-white border border-white/20 backdrop-blur-sm group-hover:bg-[#2F3296] group-hover:border-[#2F3296] transition-all duration-300">
                             {solution.icon}
                         </div>
                         <span className="text-4xl lg:text-5xl font-black text-white/80 tracking-tighter leading-none select-none group-hover:text-[#2F3296] transition-colors duration-300">
@@ -699,7 +724,7 @@ export default function TestingPage() {
                         <div className="h-0 opacity-0 transform translate-y-8 group-hover:h-auto group-hover:opacity-100 group-hover:translate-y-0 overflow-hidden transition-all duration-500 ease-out mt-0 group-hover:mt-3">
                             
                             {/* Description Block */}
-                            <p className="text-white/80 text-xs lg:text-sm leading-relaxed mb-4 border-t border-white/10 pt-3">
+                            <p className="text-white/80 text-xs lg:text-sm leading-relaxed border-t border-white/10 pt-3">
                             {solution.description}
                             </p>
 
@@ -736,13 +761,22 @@ export default function TestingPage() {
                         <p className="text-white/30 text-[10px] mt-1.5 block lg:hidden group-hover:opacity-0 transition-opacity duration-200">
                             Tap card to reveal details
                         </p>
-
-                        </div>
-
+                        </div>                        
                     </div>
-                    </div>
+                    </div>                    
                 ))}
-                </div>
+                </div>{/* Mobile Indicators for Section 3 — Hidden on Desktop */}
+              <div className="flex lg:hidden items-center justify-center gap-2 mt-2 w-full">
+                {SOLUTIONS.map((_, dotIdx) => (
+                  <div
+                    key={dotIdx}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeSolutionIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-300"
+                    }`}
+                  />
+                ))}
+              </div>
+              </div>             
 
             </div>
         </section>
@@ -901,7 +935,10 @@ export default function TestingPage() {
                         </button>
                       ))}
                     </div>
-        
+                    {/* Responsive hint text */}
+                    <p className="text-xs text-black/40 text-center block lg:hidden">
+                      Swipe steps to navigate your workflow ← →
+                    </p>
                     {/* Vertical divider */}
                     <div className="hidden lg:block w-px bg-[#2F3296] self-stretch mx-2" />
         
@@ -1052,17 +1089,22 @@ export default function TestingPage() {
             </div>
 
             {/* ── RIGHT SIDE: Grid Track (with responsive fluid touch swipe structures on mobile) ── */}
-            <div className="w-full lg:w-[65%] flex lg:grid flex-row lg:grid-cols-2 gap-5 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 lg:mx-0 lg:px-0 items-stretch">
-              {REASONS.map((reason, index) => {
-                const formattedNumber = String(index + 1).padStart(2, "0");
-                
-                return (
-                  <div
-                    key={reason.title}
-                    className={`group relative flex flex-col justify-between gap-5 bg-[#2F3296]/20 border border-white/5 hover:border-[#2F3296]/60 rounded-3xl p-6 lg:p-8 transition-all duration-300 overflow-hidden cursor-default shadow-sm hover:shadow-[0_0_30px_rgba(47,50,150,0.15)] flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center
-                      ${index === 4 ? "lg:col-span-2" : ""} 
-                    `}
-                  >
+            <div className="w-full lg:w-[65%] relative">
+              <div 
+                ref={reasonScrollRef}
+                onScroll={() => handleScrollTracking(reasonScrollRef, setActiveReasonIndex)}
+                className="w-full flex lg:grid flex-row lg:grid-cols-2 gap-5 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 lg:mx-0 lg:px-0 items-stretch"
+              >
+                {REASONS.map((reason, index) => {
+                  const formattedNumber = String(index + 1).padStart(2, "0");
+                  
+                  return (
+                    <div
+                      key={reason.title}
+                      className={`group relative flex flex-col justify-between gap-5 bg-[#2F3296]/20 border border-white/5 hover:border-[#2F3296]/60 rounded-3xl p-6 lg:p-8 transition-all duration-300 overflow-hidden cursor-default shadow-sm hover:shadow-[0_0_30px_rgba(47,50,150,0.15)] flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center
+                        ${index === 4 ? "lg:col-span-2" : ""} 
+                      `}
+                    >
                     {/* Giant Sliding Background Watermark Number */}
                     <span className="absolute -bottom-4 right-4 text-7xl lg:text-8xl font-black text-white/10 group-hover:text-[#2F3296]/80 leading-none select-none tracking-tighter transition-all duration-500 transform group-hover:-translate-y-3">
                       {formattedNumber}
@@ -1089,6 +1131,18 @@ export default function TestingPage() {
                   </div>
                 );
               })}
+            </div>
+            {/* Mobile Indicators for Section 7 — Hidden on Desktop */}
+              <div className="flex lg:hidden items-center justify-center gap-2 mt-4 w-full">
+                {REASONS.map((_, dotIdx) => (
+                  <div
+                    key={dotIdx}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeReasonIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-700"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
           </div>
@@ -1182,31 +1236,24 @@ export default function TestingPage() {
           </div>
 
           {/* Solutions Interactive Cards Track — with swappable touch rows for mobile views */}
-          <div className="flex lg:grid flex-row lg:grid-cols-3 gap-5 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 lg:mx-0 lg:px-0 items-stretch">
-            {RELATED_SOLUTIONS.map((solution, index) => {
-              const formattedNumber = String(index + 1).padStart(2, "0");
-              
-              return (
-                <div
-                  key={solution.title}
-                  className={`group relative flex flex-col justify-between gap-6 rounded-3xl p-6 lg:p-8 border transition-all duration-300 overflow-hidden text-left flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center
-                    ${solution.active 
-                      ? "bg-[#2F3296]/10 border-[#2F3296] shadow-[0_0_40px_rgba(47,50,150,0.1)]" 
-                      : "bg-zinc-50 border-zinc-300 hover:border-[#2F3296]/30"
-                    }
-                  `}
-                >
+          <div className="relative w-full">
+            <div 
+              ref={relatedScrollRef}
+              onScroll={() => handleScrollTracking(relatedScrollRef, setActiveRelatedIndex)}
+              className="flex lg:grid flex-row lg:grid-cols-3 gap-5 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 lg:mx-0 lg:px-0 items-stretch"
+            >
+              {RELATED_SOLUTIONS.map((solution, index) => {
+                const formattedNumber = String(index + 1).padStart(2, "0");
+                
+                return (
+                  <div
+                    key={solution.title}
+                    className="group relative flex flex-col justify-between gap-6 rounded-3xl p-6 lg:p-8 border border-[#2F3296]/20 shadow-sm shadow-[#2F3296] transition-all duration-300 overflow-hidden text-left flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center"
+                  >
                   {/* Giant Sliding Background Watermark Number */}
                   <span className="absolute -bottom-4 right-4 text-7xl lg:text-8xl font-black text-black/20 group-hover:text-[#2F3296]/20 leading-none select-none tracking-tighter transition-all duration-500 transform group-hover:-translate-y-3">
                     {formattedNumber}
                   </span>
-
-                  {/* Active Indicator Micro Ring — Hidden on mobile, visible on desktop */}
-                    {solution.active && (
-                    <span className="hidden lg:inline-block absolute top-4 right-4 bg-[#2F3296]/20 text-[#2F3296] border border-[#2F3296]/30 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-widest z-20">
-                        Current Module
-                    </span>
-                    )}
 
                   {/* Content Block */}
                   <div className="flex flex-col gap-3 relative z-10">
@@ -1242,6 +1289,18 @@ export default function TestingPage() {
                 </div>
               );
             })}
+          </div>
+          {/* Mobile Indicators for Section 9 — Hidden on Desktop */}
+            <div className="flex lg:hidden items-center justify-center gap-2 mt-4 w-full">
+              {RELATED_SOLUTIONS.map((_, dotIdx) => (
+                <div
+                  key={dotIdx}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeRelatedIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-300"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
