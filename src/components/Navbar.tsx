@@ -57,16 +57,16 @@ export default function Navbar() {
         {/* Desktop nav links */}
         <ul className="hidden lg:flex flex-1 items-center justify-center list-none m-0 p-0 gap-0.5 flex-nowrap">
           {/*Temporary nav item right coner untill stage 2,3 */}
-          <div className="w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 lg:py-28"></div>
-          {NAV_ITEMS.map((item) =>
+<div className="hidden lg:block w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 lg:py-28"></div>
+{NAV_ITEMS.map((item) =>
             item.children ? (
               <li key={item.label} className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen((v) => !v)}
                   aria-expanded={dropdownOpen}
                   aria-haspopup="true"
-                  className="flex items-center px-2.5 py-2 text-black text-[12px] font-semibold tracking-wider whitespace-nowrap no-underline rounded hover:text-#2F3296 hover:underline decoration-[#2F3296] transition-colors duration-150"
-                >
+                  className="flex items-center px-2.5 py-2 text-black text-[12px] font-semibold tracking-wider whitespace-nowrap no-underline rounded hover:text-[#2F3296] hover:underline decoration-[#2F3296] transition-colors duration-150"
+                  >
                   {item.label}
                   <span className="text-[8px] opacity-75" aria-hidden="true">
                     {dropdownOpen ? "▲" : "▼"}
@@ -135,52 +135,61 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* ── Mobile drawer ── */}
+{/* ── Mobile drawer (Updated to a Viewport Pinned Screen Overlay) ── */}
       {mobileOpen && (
-        <div
-          className="lg:hidden bg-[#ffffff] border-t border-white/15 py-3"
-          style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
-        >
-          <ul className="list-none m-0 p-0">
-            {NAV_ITEMS.map((item) =>
-              item.children ? (
-                <li key={item.label}>
-                  <button
-                    onClick={() => setMobileAboutOpen((v) => !v)}
-                    className="flex justify-between items-center w-full px-6 py-3 text-black text-[13px] font-semibold tracking-wider bg-transparent border-0 cursor-pointer text-left hover:bg-white/10 transition-colors duration-100"
-                  >
-                    {item.label}
-                    <span className="text-[10px]">{mobileAboutOpen ? "▲" : "▼"}</span>
-                  </button>
-                  {mobileAboutOpen && (
-                    <ul className="list-none m-0 p-0 bg-black/20">
-                      {item.children.map((child) => (
-                        <li key={child.label}>
-                          <Link
-                            href={child.href}
-                            onClick={() => setMobileOpen(false)}
-                            className="block px-10 py-2.5 text-[#2F3296] text-[13px] no-underline bg-zinc-5 transition-colors duration-100"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ) : (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-6 py-3 text-black text-[13px] font-semibold tracking-wider no-underline hover:bg-[#2F3296] hover:text-#2F3296 transition-colors duration-100"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              )
-            )}
-          </ul>
+        <>
+          {/* 1. Backdrop Blur Underlay Mask — Intercepts screen clicks to close drawer */}
+          <div 
+            className="lg:hidden fixed inset-0 top-16 bg-black/20 backdrop-blur-sm z-[998] animate-in fade-in duration-200"
+            onClick={() => setMobileOpen(false)}
+          />
+
+          {/* 2. Main Pinned Floating Navigation Card Row Stack */}
+          <div
+            className="lg:hidden fixed top-16 left-0 w-full bg-white shadow-2xl border-t border-zinc-100 py-3 z-[999] max-h-[calc(100vh-64px)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200"
+            style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
+          >
+            <ul className="list-none m-0 p-0 flex flex-col">
+              {NAV_ITEMS.map((item) =>
+                item.children ? (
+                  <li key={item.label} className="w-full">
+                    <button
+                      onClick={() => setMobileAboutOpen((v) => !v)}
+                      className="flex justify-between items-center w-full px-6 py-3 text-black text-[13px] font-semibold tracking-wider bg-transparent border-0 cursor-pointer text-left hover:bg-zinc-50 transition-colors duration-100"
+                    >
+                      {item.label}
+                      <span className="text-[10px] text-[#2F3296]">{mobileAboutOpen ? "▲" : "▼"}</span>
+                    </button>
+                    {mobileAboutOpen && (
+                      <ul className="list-none m-0 p-0 bg-zinc-50 border-y border-zinc-100">
+                        {item.children.map((child) => (
+                          <li key={child.label}>
+                            <Link
+                              href={child.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="block px-10 py-3 text-[#2F3296] text-[13px] font-medium no-underline hover:bg-[#2F3296]/10 transition-colors duration-100"
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ) : (
+                  <li key={item.label} className="w-full">
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block px-6 py-3 text-black text-[13px] font-semibold tracking-wider no-underline hover:bg-[#2F3296]/10 hover:text-[#2F3296] transition-colors duration-100"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
+          
 
           {/* Login — mobile
           <div className="flex items-center gap-2 px-6 pt-3 mt-1 border-t border-[#2F3296]/15 text-black text-[13px]">
@@ -194,6 +203,8 @@ export default function Navbar() {
             </Link>
           </div> */}
         </div>
+        
+        </>
       )}
     </>
   );
