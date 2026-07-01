@@ -396,6 +396,27 @@ export default function Home() {
   const metricsRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
+// State & Refs for Sections 2, 7, and 9 Scroll Tracking
+    const [activeSolutionIndex, setActiveSolutionIndex] = useState(0);
+    const solutionScrollRef = useRef<HTMLDivElement>(null);
+
+    const [activeSubsidiariesIndex, setActiveSubsidiariesIndex] = useState(0);
+    const subsidiariesScrollRef = useRef<HTMLDivElement>(null);
+
+    const [activeArticlesIndex, setActiveArticlesIndex] = useState(0);
+    const articlesScrollRef = useRef<HTMLDivElement>(null);
+
+    // Reusable scroll math compiler helper function
+    const handleScrollTracking = (
+      scrollRef: React.RefObject<HTMLDivElement | null>,
+      setIndexState: React.Dispatch<React.SetStateAction<number>>
+    ) => {
+      if (scrollRef.current) {
+        const { scrollLeft, clientWidth } = scrollRef.current;
+        const index = Math.round(scrollLeft / (clientWidth * 0.85));
+        setIndexState(index);
+      }
+    };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -505,7 +526,12 @@ export default function Home() {
 
         {/* ── Solution cards grid ── */}
         <div className="flex flex-row lg:grid lg:grid-cols-4 gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 lg:px-0 lg:mx-auto">
-          {SOLUTIONS.map((solution) => (
+          <div 
+          ref={solutionScrollRef}
+          onScroll={() => handleScrollTracking(solutionScrollRef, setActiveSolutionIndex)}
+          className="flex flex-row lg:grid lg:grid-cols-4 gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none lg:px-0 lg:mx-auto"
+          >
+            {SOLUTIONS.map((solution) => (
             <div
               key={solution.title}
               className="group relative flex flex-col bg-[#2F3296]/20 hover:bg-white/80 border border-white/20 hover:border-white rounded-2xl p-6 transition-all duration-300 cursor-pointer overflow-hidden w-[85%] sm:w-[48%] lg:w-auto flex-shrink-0 snap-center"
@@ -547,8 +573,20 @@ export default function Home() {
               </ul>
             </div>
           ))}
-        </div>
-      </div>
+        </div></div>
+        {/* Mobile Indicators for Section 2 — Hidden on Desktop */}
+                <div className="flex lg:hidden items-center justify-center gap-2 mt-2 w-full">
+                  {SOLUTIONS.map((_, dotIdx) => (
+                    <div
+                      key={dotIdx}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        activeSolutionIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+            </div>
+            
     </section>
     
     {/* Section 3 - Subsidiaries */}
@@ -573,6 +611,11 @@ export default function Home() {
 
         {/* 2×2 Card Grid on Desktop / Swipeable Carousel on Mobile */}
         <div className="flex flex-row sm:grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 sm:px-0 sm:mx-auto">
+          <div 
+          ref={subsidiariesScrollRef}
+          onScroll={() => handleScrollTracking(subsidiariesScrollRef, setActiveSubsidiariesIndex)}
+          className="flex flex-row sm:grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-none sm:px-0 sm:mx-auto"
+          >
           {SUBSIDIARIES.map((sub) => (
             <div
               key={sub.name}
@@ -640,7 +683,20 @@ export default function Home() {
               </div>
             </div>
           ))}
+          </div>
         </div>
+        {/* Mobile Indicators for Section  — Hidden on Desktop */}
+              <div className="flex lg:hidden items-center justify-center gap-2 mt-4 w-full">
+                {SUBSIDIARIES.map((_, dotIdx) => (
+                  <div
+                    key={dotIdx}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeSubsidiariesIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-700"
+                    }`}
+                  />
+                ))}
+              </div>
+            
       </div>
     </section>
     
@@ -1018,7 +1074,13 @@ export default function Home() {
 
           {/* Articles grid — Swipeable Row on Mobile, 2 Columns on Desktop */}
           <div className="flex flex-row sm:grid sm:grid-cols-2 gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 sm:px-0 sm:mx-auto">
-            {ARTICLES.map((article) => (
+            
+            <div 
+            ref={articlesScrollRef}
+            onScroll={() => handleScrollTracking(articlesScrollRef, setActiveArticlesIndex)}
+            className="flex flex-row sm:grid sm:grid-cols-2 gap-6 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scrollbar-none sm:px-0 sm:mx-auto"
+            >
+              {ARTICLES.map((article) => (
               <div
                 key={article.title}
                 className="group flex flex-col sm:flex-row  shadow-xl hover:bg-zinc-50 hover:scale-[1.01] rounded-3xl border border-[#2F3296]/20 hover:border-[#2F3296] transition-all duration-300 overflow-hidden w-[88%] sm:w-auto flex-shrink-0 snap-center"
@@ -1058,7 +1120,20 @@ export default function Home() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
+          {/* Mobile Indicators for Section 9 — Hidden on Desktop */}
+              <div className="flex lg:hidden items-center justify-center gap-2 mt-4 w-full">
+                {ARTICLES.map((_, dotIdx) => (
+                  <div
+                    key={dotIdx}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeArticlesIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-700"
+                    }`}
+                  />
+                ))}
+              </div>
+            
 
           {/* View All button — mobile */}
           <div className="mt-6 flex sm:hidden justify-center">
