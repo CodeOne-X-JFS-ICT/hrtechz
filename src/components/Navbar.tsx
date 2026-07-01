@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { label: "TESTING", href: "/testing" },
   /*{ label: "GENERATED AI", href: "/generated-ai" },
   { label: "PERFORMANCE MANAGEMENT", href: "/performance-management" },*/
-  { label: "TECHNICAL", href: "/technical" },
+  { label: "TECHNOLOGY", href: "/technology" },
   { label: "SUBSIDIARY", href: "/subsidiary" },
   {
     label: "ABOUT",

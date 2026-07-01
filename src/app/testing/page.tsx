@@ -501,7 +501,7 @@ export default function TestingPage() {
       {/* Top Section */}
       <section className="w-full relative overflow-hidden bg-white">
 
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-6 pb-12 lg:py-15">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-6 pb-12 lg:py-20">
         {/* Dynamic alignment layout parent wrapper: Tightened gaps on mobile */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-center lg:items-start justify-between w-full">    
         
@@ -765,17 +765,18 @@ export default function TestingPage() {
                     </div>
                     </div>                    
                 ))}
-                </div>{/* Mobile Indicators for Section 3 — Hidden on Desktop */}
-              <div className="flex lg:hidden items-center justify-center gap-2 mt-2 w-full">
-                {SOLUTIONS.map((_, dotIdx) => (
-                  <div
-                    key={dotIdx}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      activeSolutionIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-300"
-                    }`}
-                  />
-                ))}
-              </div>
+                </div>
+                {/* Mobile Indicators for Section 3 — Hidden on Desktop */}
+                <div className="flex lg:hidden items-center justify-center gap-2 mt-2 w-full">
+                  {SOLUTIONS.map((_, dotIdx) => (
+                    <div
+                      key={dotIdx}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        activeSolutionIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-300"
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>             
 
             </div>
