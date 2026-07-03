@@ -185,14 +185,175 @@ const TECH_STACK = [
   { label: "Data & Analytics", pct: 90 },
 ];
 
+/* ──  Tech Steps ──────────────── */
+const TECH_STEPS = [
+  {
+    number: "01",
+    title: "Requirement Discovery",
+    description:
+      "Understand your current systems, workflows, and technology goals through in-depth discovery sessions.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="13" cy="13" r="8" stroke="currentColor" strokeWidth="2" />
+        <path d="M19 19l5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "02",
+    title: "Solution Design",
+    description:
+      "Architect a technology solution tailored to your operational needs, team structure, and growth roadmap.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="4" y="4" width="20" height="20" rx="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M9 10h10M9 14h10M9 18h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "03",
+    title: "Development & Integration",
+    description:
+      "Build and integrate the solution using modern, secure engineering practices aligned to your existing stack.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="3" y="6" width="22" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
+        <path d="M9 12l3 3-3 3M15 15h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "04",
+    title: "Testing & Quality Assurance",
+    description:
+      "Rigorously test functionality, performance, and security before deployment to ensure a flawless release.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M5 14l6 6L23 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    number: "05",
+    title: "Deployment & Ongoing Support",
+    description:
+      "Launch the solution and provide continuous monitoring, maintenance, and support to keep everything running.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="2" />
+        <path d="M14 8v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+];
+ 
+/* ── Tech Industries ──────────────── */
+const TECH_INDUSTRIES = [
+  { label: "Information Technology", icon: "🗹" },
+  { label: "Banking & Financial Services", icon: "🗹" },
+  { label: "Telecommunication", icon: "🗹" },
+  { label: "Manufacturing", icon: "🗹" },
+  { label: "Retail", icon: "🗹" },
+  { label: "Healthcare", icon: "🗹" },
+  { label: "Hospitality", icon: "🗹" },
+  { label: "Logistics", icon: "🗹" },
+  { label: "BPO & Shared Services", icon: "🗹" },
+  { label: "Education", icon: "🗹" },
+];
 
+/* ── Tech Reasons ──────────────── */
+const TECH_REASONS = [
+  {
+    title: "Proven Expertise",
+    description:
+      "Experienced engineering teams with deep HR technology domain knowledge built over years of delivery.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="10" r="6" stroke="currentColor" strokeWidth="2" />
+        <path d="M5 24c0-5 4-9 9-9s9 4 9 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M19 5l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    title: "Faster Delivery",
+    description:
+      "Agile development practices that accelerate time to launch without compromising quality.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="2" />
+        <path d="M14 8v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    title: "Scalable Solutions",
+    description:
+      "Technology built to grow with your organization — from startup through to full enterprise scale.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <rect x="3" y="17" width="5" height="8" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="11" y="11" width="5" height="14" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="19" y="5" width="5" height="20" rx="1" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    ),
+  },
+  {
+    title: "Security Focused",
+    description:
+      "Solutions designed with data security and compliance as a core priority at every layer.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 3l10 4v8c0 5-4.5 9-10 10C8.5 24 4 20 4 15V7l10-4z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M9 14l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    title: "Integrated HR Ecosystem",
+    description:
+      "Seamlessly connected with HRTECHZ Hiring and Testing solutions for a unified end-to-end HR platform.",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="7"  cy="14" r="4" stroke="currentColor" strokeWidth="2" />
+        <circle cx="21" cy="7"  r="4" stroke="currentColor" strokeWidth="2" />
+        <circle cx="21" cy="21" r="4" stroke="currentColor" strokeWidth="2" />
+        <path d="M11 14h2m4-5l-2 2m0 6l2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+];
+ 
+/* ── Tech Related Solutions ──────────────── */
+const TECH_RELATED_SOLUTIONS = [
+  {
+    title: "Hiring",
+    description: "Find and recruit top talent through JobFactory and SourceOne.",
+    tagline: "Talent Acquisition",
+    href: "/hiring",
+  },
+  {
+    title: "Testing",
+    description: "Verify candidate credentials and reduce hiring risks through Verifieze.",
+    tagline: "Background Screening",
+    href: "/testing",
+  },
+  {
+    title: "Technology",
+    description: "Transform HR operations through CODEONE-X technology solutions.",
+    tagline: "Digital Transformation",
+    href: "/technology",
+  },
+];
+ 
 
 export default function TechnologyPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [metricsStarted, setMetricsStarted] = useState(false);
   const metricsRef = useRef<HTMLDivElement>(null);
 
-  /* Scroll tracking — matches testing/page.tsx */
+  /* Scroll tracking */
   const [activeBenefitIndex, setActiveBenefitIndex] = useState(0);
   const benefitScrollRef = useRef<HTMLDivElement>(null);
   const handleBenefitScroll = () => {
@@ -203,13 +364,16 @@ export default function TechnologyPage() {
     }
   };
 
-  const [activeSolutionIndex, setActiveSolutionIndex] = useState(0);
-  const solutionScrollRef = useRef<HTMLDivElement>(null);
+    const [activeSolutionIndex, setActiveSolutionIndex] = useState(0);
+    const solutionScrollRef = useRef<HTMLDivElement>(null);
 
-  const [activeRelatedIndex, setActiveRelatedIndex] = useState(0);
-  const relatedScrollRef = useRef<HTMLDivElement>(null);
+    const [activeRelatedIndex, setActiveRelatedIndex] = useState(0);
+    const relatedScrollRef = useRef<HTMLDivElement>(null);
 
-  /* Reusable scroll math helper — identical to testing/page.tsx */
+    const [activeReasonIndex, setActiveReasonIndex] = useState(0);
+    const reasonScrollRef = useRef<HTMLDivElement>(null);
+
+  /* Reusable scroll math helper — identical */
   const handleScrollTracking = (
     scrollRef: React.RefObject<HTMLDivElement | null>,
     setIndexState: React.Dispatch<React.SetStateAction<number>>
@@ -242,7 +406,7 @@ export default function TechnologyPage() {
     >
       <Navbar />
 
-      {/* HERO — Technology Page*/}
+      {/* HERO — top section */}
       <section className="w-full relative overflow-hidden bg-white">
         <div className="absolute top-0 right-0 w-[40%] h-full bg-[#2F3296]/4 blur-[120px] pointer-events-none rounded-full" />
         <div className="absolute top-0 right-0 w-0.5 h-full bg-gradient-to-b from-[#2F3296]/60 via-[#2F3296]/20 to-transparent pointer-events-none" />
@@ -306,39 +470,6 @@ export default function TechnologyPage() {
             </div>
           </div>
         </div>
-
-        {/* Full-width black dashboard strip */}
-        <div className="w-full bg-black border-t border-white/10 px-6 lg:px-12 py-8 mt-4">
-          <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
-            <div className="flex-shrink-0 lg:w-64 text-center lg:text-left">
-              <p className="text-white/50 text-xs font-bold tracking-[0.2em] uppercase mb-1">CodeOne-X Capabilities</p>
-              <p className="text-white font-black text-lg leading-tight">Technology That Scales</p>
-            </div>
-            <div className="hidden lg:block w-px h-16 bg-white/10 mx-10 flex-shrink-0" />
-            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-              {TECH_STACK.map((item) => (
-                <div key={item.label} className="flex flex-col gap-1.5">
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/70 text-xs font-semibold">{item.label}</span>
-                    <span className="text-[#2F3296] text-xs font-black">{item.pct}%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#2F3296] rounded-full" style={{ width: `${item.pct}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="hidden lg:block w-px h-16 bg-white/10 mx-10 flex-shrink-0" />
-            <div className="flex-shrink-0 flex flex-row lg:flex-col gap-3">
-              {["ISO Compliant", "Agile Delivery", "24/7 Support"].map((tag) => (
-                <div key={tag} className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-4 py-2">
-                  <span className="w-2 h-2 rounded-full bg-[#2F3296]" />
-                  <span className="text-white text-xs font-semibold whitespace-nowrap">{tag}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* SECTION 2 — Why Technology Matters*/}
@@ -390,26 +521,28 @@ export default function TechnologyPage() {
             <div
               ref={benefitScrollRef}
               onScroll={() => handleScrollTracking(benefitScrollRef, setActiveBenefitIndex)}
-              className="flex flex-row lg:grid lg:grid-cols-2 gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none pb-6 px-4 -mx-4 lg:px-0 lg:mx-auto"
+              className="flex flex-row lg:grid lg:grid-cols-3 gap-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none pb-1 px-2 -mx-2 lg:px-0 lg:mx-auto"
             >
               {BENEFITS.map((benefit) => (
                 <div
                   key={benefit.title}
-                  className="w-[85%] sm:w-[48%] lg:w-auto h-[480px] lg:h-[420px] flex-shrink-0 snap-center rounded-3xl overflow-hidden shadow-md relative group cursor-pointer bg-[#090A1E] border border-white/10"
+                  className="w-[85%] sm:w-[48%] lg:w-auto h-auto flex-shrink-0 snap-center rounded-3xl relative group cursor-pointer bg-zinc-950/20"
                 >
-                  <div className="group flex flex-col gap-3 lg:gap-4 bg-[#2F3296]/20 border border-white/20 hover:border-[#2F3296] lg:hover:bg-white/80 rounded-2xl p-5 lg:p-6 shadow-sm hover:shadow-md transition-all duration-300 cursor-default select-none h-full justify-between items-start">
+                  <div className="group flex flex-col gap-4 bg-[#2F3296]/20 border border-white/20 hover:border-[#2F3296] lg:hover:bg-white/80 rounded-3xl p-4 lg:p-6 shadow-md transition-all duration-300 cursor-default select-none h-full justify-between items-start min-h-[260px] lg:min-h-[280px]">
                     <div className="flex items-center justify-between">
-                      <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-[#2F3296] text-black transition-all duration-300 lg:group-hover:bg-[#2F3296] lg:group-hover:text-white">
+                      <div className="w-11 h-11 flex items-center justify-center mt-2 rounded-xl bg-[#2F3296] text-black gap-2 transition-all duration-300">
                         {benefit.icon}
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-left text-white lg:group-hover:text-[#2F3296] transition-colors duration-300">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-left text-white/60 lg:group-hover:text-zinc-800 transition-colors duration-300">
-                      {benefit.description}
-                    </p>
-                    <div className="mt-auto pt-2 border-t border-zinc-100/10 lg:border-zinc-100 w-full">
+                    <div className="flex flex-col gap-2 mt-2 text-left">
+                      <h3 className="text-xl font-bold text-white lg:group-hover:text-[#2F3296] tracking-tight gap-1 leading-snug">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-zinc-400 gap-1 lg:group-hover:text-zinc-800 mt-1">
+                        {benefit.description}
+                      </p>
+                    </div>
+                    <div className="mt-2 pt-2 border-t border-white gap-1 w-full">
                       <div className="h-0.5 bg-[#2F3296] rounded-full transition-all duration-500 lg:w-0 lg:group-hover:w-full w-0" />
                     </div>
                   </div>
@@ -542,59 +675,53 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          SECTION 4 — Powered by CodeOne-X
-      ══════════════════════════════════════════ */}
-      <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
-      <section className="w-full bg-zinc-30 py-16 lg:py-20 px-6 lg:px-12 border-b border-zinc-200">
+      {/* SECTION 4 — Powered by CodeOne-X */}
+      <section className="w-full bg-black py-16 lg:py-20 px-6 lg:px-12 border-b border-zinc-200">
         <div className="w-full max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-between">
 
-            {/* LEFT: Visual card */}
-            <div className="w-full lg:w-[48%] flex items-center justify-center bg-white shadow-[#2F3296] rounded-3xl p-6 lg:p-12 shadow-xl min-h-[160px] lg:min-h-[400px] relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-[#2F3296]/5 pointer-events-none" />
-
-              {/* CodeOne-X visual — tech grid pattern */}
-              <div className="relative z-10 w-full flex flex-col items-center gap-6">
-                {/* Icon mark */}
-                <div className="w-20 h-20 flex items-center justify-center rounded-3xl bg-[#2F3296] shadow-2xl">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect x="4" y="8" width="32" height="24" rx="3" stroke="white" strokeWidth="2" />
-                    <path d="M14 18l4 4-4 4M20 22h6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                {/* Wordmark */}
-                <div className="text-center">
-                  <p className="text-[#2F3296] font-black text-3xl lg:text-4xl tracking-tight">CODEONE-X</p>
-                  <p className="text-zinc-400 text-sm font-semibold tracking-[0.18em] uppercase mt-1">Technology Innovation Hub</p>
-                </div>
-                {/* Mini tech tags */}
-                <div className="flex flex-wrap justify-center gap-2">
-                  {["AI", "Automation", "Cloud", "Data", "Web"].map((tag) => (
-                    <span key={tag} className="px-3 py-1 bg-[#2F3296]/10 border border-[#2F3296]/20 text-[#2F3296] text-xs font-bold rounded-full">
-                      {tag}
-                    </span>
-                  ))}
+            {/* ── LEFT SIDE: Large Visual Card Display Area (Optimized min-height bounds for mobile views) ── */}
+            <div className="w-full lg:w-[48%] flex items-center justify-center bg-[#2F3296] shadow-zinc-700 rounded-3xl p-6 lg:p-12 shadow-xl min-h-[160px] lg:min-h-[400px] relative overflow-hidden">
+              {/* Decorative subtle abstract backdrop pattern */}
+              <div className="absolute inset-0 bg-gradient-to-br from-black via-[#2F3296] to-black pointer-events-none" />
+                                    
+               {/* Core Verifieze Logo Placement (Scaled down bounds cleanly on mobile viewports) */}
+                <div className="relative w-full max-w-[200px] lg:max-w-sm h-16 lg:h-28 z-10 transition-transform duration-300 hover:scale-105">
+                  <Image
+                  src="/images/codeonex-logo.png"
+                  alt="codeonex"
+                  fill
+                  className="object-contain"
+                  />
                 </div>
               </div>
-            </div>
 
             {/* RIGHT: Content & Strengths checklist */}
             <div className="w-full lg:w-[48%] flex flex-col text-center lg:text-left items-center lg:items-start gap-5">
 
-              <div className="flex items-center justify-center lg:justify-start gap-3">
-                <span className="inline-block w-8 h-0.5 bg-[#2F3296]" />
-                <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase">Powered by</p>
+            {/* Logo placeholder — Balanced vertical stack with gap spacing adjustment */}
+            <div className="flex flex-col gap-1 items-center lg:items-start mx-auto lg:mx-0 mb-4">
+              <p className="text-white text-md font-semibold tracking-[0.18em] uppercase">
+                Powered by
+              </p>
+              <div className="relative w-52 h-12">
+                <Image
+                  src="/images/codeonex-logo.png"
+                  alt="codeonex"
+                  fill
+                  className="object-contain object-center lg:object-left brightness-50"
+                />
               </div>
+            </div>
 
-              <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight text-center lg:text-left w-full">
-                Technology{" "}
+              <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight text-center lg:text-left w-full">
+                Technology<br></br>{" "}
                 <span className="underline decoration-[#2F3296] underline-offset-4 text-[#2F3296]">
                   Innovation Hub
                 </span>
               </h2>
 
-              <p className="text-black/75 text-lg leading-relaxed text-justify lg:text-left">
+              <p className="text-white/65 text-lg leading-relaxed text-center lg:text-left">
                 CODEONE-X is the dedicated technology arm of HRTECHZ, delivering
                 HR software, automation, and AI-driven solutions for organizations
                 across industries.
@@ -603,8 +730,8 @@ export default function TechnologyPage() {
               {/* Key Strengths checklist — matches testing/page.tsx check list style */}
               <ul className="flex flex-col gap-3.5 mt-2 w-full">
                 {CODEONEX_STRENGTHS.map((checkItem) => (
-                  <li key={checkItem} className="flex items-center gap-3 text-zinc-800 text-md font-bold tracking-wide">
-                    <span className="w-5 h-5 flex items-center justify-center rounded-full bg-[#2F3296]/10 border border-[#2F3296]/30 text-[#2F3296] flex-shrink-0 shadow-sm">
+                  <li key={checkItem} className="flex items-center gap-3 text-zinc-300 text-md font-bold tracking-wide">
+                    <span className="w-5 h-5 flex items-center justify-center rounded-full bg-[#2F3296]/10 border border-[#2F3296]/80 text-[#2F3296] flex-shrink-0 shadow-sm">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-current" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M20 6L9 17l-5-5" />
                       </svg>
@@ -618,8 +745,417 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* ── Remaining sections will be added here ── */}
+      {/* SECTION 5 — Our Technology Process */}
+      <section className="w-full bg-black py-12 lg:py-10 px-6 lg:px-12">
+        <div className="w-full max-w-7xl mx-auto">
+      
+          {/* Header */}
+          <div className="text-center mb-10 lg:mb-14">
+            <p className="text-white text-sm font-semibold tracking-[0.18em] uppercase mb-4">
+              Our Process
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
+              How{" "}
+              <span className="text-[#2F3296]">Technology</span>{" "}
+              Delivery Works
+            </h2>
+            <p className="text-zinc-300 text-base lg:text-lg mt-3 max-w-2xl mx-auto">
+              A structured, five-step engineering process designed for
+              precision, speed, and long-term reliability.
+            </p>
+            <div className="mx-auto mt-4 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+      
+          {/* Two-column — steps list left, detail right */}
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-stretch">
+      
+            {/* LEFT — Horizontal scroll on mobile, vertical list on desktop */}
+            <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-3 lg:pb-0 scrollbar-none snap-x snap-mandatory -mx-6 px-6 lg:mx-0 lg:px-0 flex-1">
+              {TECH_STEPS.map((step, i) => (
+                <button
+                  key={step.title}
+                  onClick={() => setActiveStep(i)}
+                  className={`group flex items-center gap-4 lg:gap-5 p-4 lg:p-5 rounded-2xl border shadow-[#2F3296] shadow-sm text-left transition-all duration-300 flex-shrink-0 w-[80%] sm:w-[45%] lg:w-full snap-center
+                    ${
+                      activeStep === i
+                        ? "bg-[#2F3296] border-[#2F3296] shadow-lg"
+                        : "bg-black border-zinc-200 hover:border-[#2F3296] hover:bg-[#2F3296]/5"
+                    }`}
+                >
+                  {/* Number badge */}
+                  <span
+                    className={`flex-shrink-0 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center rounded-xl text-sm lg:text-base font-black transition-colors duration-300
+                      ${
+                        activeStep === i
+                          ? "bg-white text-[#2F3296]"
+                          : "bg-[#2F3296]/30 text-zinc-400 group-hover:bg-[#2F3296] group-hover:text-white"
+                      }`}
+                  >
+                    {step.number}
+                  </span>
+                  {/* Title */}
+                  <div className="flex-1 min-w-0">
+                    <p
+                      className={`font-bold text-sm lg:text-base truncate lg:whitespace-normal transition-colors duration-300 ${
+                        activeStep === i ? "text-white" : "text-zinc-300 group-hover:text-[#2F3296]"
+                      }`}
+                    >
+                      {step.title}
+                    </p>
+                  </div>
+                  {/* Arrow — hidden on mobile */}
+                  <svg
+                    width="18" height="18" viewBox="0 0 18 18" fill="none"
+                    className={`hidden lg:block flex-shrink-0 transition-all duration-300 ${
+                      activeStep === i ? "text-white translate-x-1" : "text-zinc-300 group-hover:text-[#2F3296]"
+                    }`}
+                  >
+                    <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              ))}
+            </div>
+      
+            {/* Mobile swipe hint */}
+            <p className="text-xs text-white/40 text-center block lg:hidden">
+              Swipe steps to navigate your workflow ← →
+            </p>
+      
+            {/* Vertical divider — desktop only */}
+            <div className="hidden lg:block w-px bg-[#2F3296] self-stretch mx-2" />
+      
+            {/* RIGHT — Active step detail panel */}
+            <div className="flex-1 flex items-center mt-2 lg:mt-0">
+              <div className="w-full min-h-[380px] lg:min-h-[440px] rounded-3xl p-6 lg:p-10 flex flex-col gap-5 lg:gap-6 shadow-xl relative overflow-hidden bg-white border border-[#2F3296]">
+      
+                {/* Gradient overlay — matches testing/page.tsx exactly */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2F3296]/50 via-black/50 to-black/70 z-0" />
+                <div className="absolute inset-0 bg-black mix-blend-overlay z-0" />
+      
+                {/* Inner content */}
+                <div className="relative z-10 flex flex-col gap-4 lg:gap-5 h-full w-full justify-between flex-1">
+      
+                  {/* Icon */}
+                  <div className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-[#2F3296]/30 text-white border border-[#2F3296] backdrop-blur-sm shadow-sm">
+                    {TECH_STEPS[activeStep].icon}
+                  </div>
+      
+                  {/* Step badge */}
+                  <span className="inline-flex items-center gap-2 text-xs font-bold text-zinc-400 uppercase tracking-widest mt-1 lg:mt-2">
+                    <span className="w-6 h-px bg-white" />
+                    Step {TECH_STEPS[activeStep].number} of {TECH_STEPS.length}
+                  </span>
+      
+                  {/* Title */}
+                  <h3 className="text-xl lg:text-3xl font-black text-white uppercase tracking-tight">
+                    {TECH_STEPS[activeStep].title}
+                  </h3>
+      
+                  {/* Description */}
+                  <span className="flex items-center gap-3 text-zinc-300 text-sm lg:text-md font-medium lg:font-bold tracking-wide leading-relaxed">
+                    {TECH_STEPS[activeStep].description}
+                  </span>
+      
+                  {/* Progress bar */}
+                  <div className="mt-auto pt-3 lg:pt-4 w-full">
+                    <div className="flex justify-between text-xs text-zinc-400 font-medium mb-2">
+                      <span>Module Progress</span>
+                      <span>{Math.round(((activeStep + 1) / TECH_STEPS.length) * 100)}%</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-black rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-white rounded-full transition-all duration-500 ease-out"
+                        style={{ width: `${((activeStep + 1) / TECH_STEPS.length) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+      
+                  {/* Navigation dots */}
+                  <div className="flex gap-2 pt-1 lg:pt-2">
+                    {TECH_STEPS.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveStep(i)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          activeStep === i ? "w-8 bg-[#2F3296]" : "w-2 bg-zinc-200 hover:bg-zinc-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* SECTION 6 — Industries We Support */}
+      <section className="w-full bg-white py-10 px-6 lg:px-12">
+        <div className="w-full max-w-7xl mx-auto">
+      
+          {/* Header */}
+          <div className="text-center mb-14">
+            <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-4">
+              Industries We Support
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight">
+              Trusted Across{" "}
+              <span className="underline decoration-zinc-300 underline-offset-4 text-[#2F3296]">
+                Every Sector
+              </span>
+            </h2>
+            <p className="text-zinc-600 text-lg mt-4 max-w-2xl mx-auto">
+              Our technology services are trusted by organizations across
+              a wide range of industries throughout Sri Lanka and beyond.
+            </p>
+            <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+      
+          {/* 5×2 industry grid — 1-col mobile, 3-col tablet, 5-col desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+            {TECH_INDUSTRIES.map((industry) => (
+              <button
+                key={industry.label}
+                className="group flex items-center gap-3 rounded-xl px-4 py-3 border text-left shadow-sm shadow-[#2F3296] bg-white border-[#2F3296]/20  text-[#2F3296] hover:border-[#2F3296]/20 hover:scale-[1.02] transition-all duration-300 cursor-pointer w-full"
+              >
+                <span className="text-xl flex-shrink-0">{industry.icon}</span>
+                <span className="text-sm font-semibold leading-snug">
+                  {industry.label}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7 — Why Organizations Choose HRTECHZ tech */}
+      <hr className="border-t border-zinc-900" />
+      <section className="w-full bg-white py-10 lg:py-16 px-6 lg:px-12 relative overflow-hidden">
+      
+        {/* Ambient neon radial glow blur */}
+        <div className="absolute top-1/3 left-1/4 -translate-x-1/2 w-[400px] h-[400px] bg-[#2F3296]/15 blur-[120px] rounded-full pointer-events-none" />
+      
+        <div className="w-full max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+      
+            {/* LEFT: Sticky headline column */}
+            <div className="w-full lg:w-[35%] lg:sticky lg:top-24 flex flex-col items-center lg:items-start text-center lg:text-left gap-4">
+              <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-1">
+                Why Choose Us
+              </p>
+      
+              {/* Desktop headline */}
+              <h2 className="hidden lg:block text-5xl font-bold text-black leading-tight tracking-tight">
+                Why <br /> Organizations<br /> Choose<br />{" "}
+                <span className="relative inline-block text-[#2F3296]">
+                  HRTECHZ
+                  <span className="absolute left-0 bottom-1 h-[4px] w-full bg-zinc-400 rounded-full" />
+                </span>{" "}<br />
+                Technology
+              </h2>
+      
+              {/* Mobile headline */}
+              <h2 className="block lg:hidden text-3xl font-bold text-black leading-tight tracking-tight text-center">
+                Why Organizations Choose{" "}
+                <span className="relative inline-block text-[#2F3296]">
+                  HRTECHZ
+                  <span className="absolute left-0 bottom-1 h-[2px] w-full bg-zinc-400 rounded-full" />
+                </span>{" "}
+                Technology
+              </h2>
+      
+              <p className="text-zinc-600 text-sm lg:text-base mt-2 max-w-md leading-relaxed text-justify lg:text-left">
+                Delivering enterprise-grade technology solutions, agile engineering
+                teams, and AI-driven automation to future-proof your HR operations.
+              </p>
+            </div>
+      
+            {/* RIGHT: Reason cards — horizontal scroll mobile, 2-col grid desktop */}
+            <div className="w-full lg:w-[65%] relative">
+              <div
+                ref={reasonScrollRef}
+                onScroll={() => handleScrollTracking(reasonScrollRef, setActiveReasonIndex)}
+                className="w-full flex lg:grid flex-row lg:grid-cols-2 gap-5 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 lg:mx-0 lg:px-0 items-stretch"
+              >
+                {TECH_REASONS.map((reason, index) => {
+                  const formattedNumber = String(index + 1).padStart(2, "0");
+                  return (
+                    <div
+                      key={reason.title}
+                      className={`group relative flex flex-col justify-between gap-5 bg-black border border-white/5 hover:border-[#2F3296]/60 rounded-3xl p-6 lg:p-8 transition-all duration-300 overflow-hidden cursor-default shadow-sm hover:shadow-[0_0_30px_rgba(47,50,150,0.15)] flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center
+                        ${index === 4 ? "lg:col-span-2" : ""}
+                      `}
+                    >
+                      {/* Giant sliding watermark number */}
+                      <span className="absolute -bottom-4 right-4 text-7xl lg:text-8xl font-black text-white/20 group-hover:text-[#2F3296]/80 leading-none select-none tracking-tighter transition-all duration-500 transform group-hover:-translate-y-3">
+                        {formattedNumber}
+                      </span>
+      
+                      {/* Icon & title */}
+                      <div className="flex flex-col gap-4 relative z-10 text-left">
+                        <div className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/10 border border-white/10 text-[#2F3296] group-hover:bg-[#2F3296] group-hover:text-white group-hover:border-[#2F3296] transition-all duration-300 shadow-inner">
+                          {reason.icon}
+                        </div>
+                        <h3 className="text-white font-black text-lg lg:text-xl uppercase tracking-tight group-hover:text-[#2F3296] transition-colors duration-200">
+                          {reason.title}
+                        </h3>
+                      </div>
+      
+                      {/* Description */}
+                      <p className="text-zinc-300 group-hover:text-zinc-300 text-sm leading-relaxed text-left relative z-10 mt-2">
+                        {reason.description}
+                      </p>
+      
+                      {/* Bottom accent edge line */}
+                      <div className="absolute left-0 bottom-0 w-0 group-hover:w-full h-1 bg-gradient-to-r from-[#2F3296] to-transparent transition-all duration-500 rounded-b-3xl" />
+                    </div>
+                  );
+                })}
+              </div>
+      
+              {/* Mobile dot indicators */}
+              <div className="flex lg:hidden items-center justify-center gap-2 mt-4 w-full">
+                {TECH_REASONS.map((_, dotIdx) => (
+                  <div
+                    key={dotIdx}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeReasonIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-700"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8 — Related HRTECHZ Solutions */}
+      <section className="w-full bg-white pb-10 lg:pb-16 pt-6 lg:pt-10 px-6 lg:px-12 relative overflow-hidden">
+      
+        {/* Subtle brand blue ambient glow */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#2F3296]/5 blur-[150px] rounded-full pointer-events-none" />
+      
+        <div className="w-full max-w-7xl mx-auto relative z-10">
+      
+          {/* Section header */}
+          <div className="text-center mb-16">
+            <p className="text-[#2F3296] text-md font-black tracking-[0.25em] uppercase mb-4">
+              Ecosystem Overview
+            </p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-black tracking-tight">
+              Related <span className="text-[#2F3296]">HRTECHZ</span> Solutions
+            </h2>
+            <div className="mx-auto mt-5 w-16 h-1 rounded-full bg-[#2F3296]" />
+          </div>
+      
+          {/* Solution cards — horizontal scroll mobile, 3-col grid desktop */}
+          <div className="relative w-full">
+            <div
+              ref={relatedScrollRef}
+              onScroll={() => handleScrollTracking(relatedScrollRef, setActiveRelatedIndex)}
+              className="flex lg:grid flex-row lg:grid-cols-3 gap-5 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory scrollbar-none -mx-6 px-6 lg:mx-0 lg:px-0 items-stretch"
+            >
+              {TECH_RELATED_SOLUTIONS.map((solution, index) => {
+                const formattedNumber = String(index + 1).padStart(2, "0");
+                return (
+                  <div
+                    key={solution.title}
+                    className="group relative flex flex-col justify-between gap-6 rounded-3xl p-6 lg:p-8 border border-[#2F3296]/20 shadow-sm shadow-[#2F3296] transition-all duration-300 overflow-hidden text-left flex-shrink-0 w-[85%] sm:w-[48%] lg:w-auto snap-center"
+                  >
+                    {/* Giant sliding watermark number */}
+                    <span className="absolute -bottom-4 right-4 text-7xl lg:text-8xl font-black text-black/20 group-hover:text-[#2F3296]/20 leading-none select-none tracking-tighter transition-all duration-500 transform group-hover:-translate-y-3">
+                      {formattedNumber}
+                    </span>
+      
+                    {/* Content block */}
+                    <div className="flex flex-col gap-3 relative z-10">
+                      <span className="text-xs font-bold tracking-widest text-zinc-400 uppercase">
+                        {solution.tagline}
+                      </span>
+                      <h3 className="text-zinc-900 font-black text-2xl lg:text-3xl uppercase tracking-tight group-hover:text-[#2F3296] transition-colors duration-200">
+                        {solution.title}
+                      </h3>
+                      <p className="text-zinc-600 text-sm leading-relaxed mt-1">
+                        {solution.description}
+                      </p>
+                    </div>
+      
+                    {/* Action link */}
+                    <div className="pt-4 border-t border-zinc-200/60 mt-auto flex justify-between items-center w-full relative z-10">
+                      <Link
+                        href={solution.href}
+                        className="text-xs font-bold tracking-widest uppercase text-zinc-800 group-hover:text-[#2F3296] transition-colors duration-200 inline-flex items-center gap-2"
+                      >
+                        Explore System
+                      </Link>
+                      <svg
+                        width="16" height="16" viewBox="0 0 16 16" fill="none"
+                        className="text-zinc-400 group-hover:text-[#2F3296] group-hover:translate-x-1 transition-all duration-200"
+                      >
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+      
+                    {/* Bottom accent edge line */}
+                    <div className="absolute left-0 bottom-0 w-0 group-hover:w-full h-1 bg-gradient-to-r from-[#2F3296] to-transparent transition-all duration-500 rounded-b-3xl" />
+                  </div>
+                );
+              })}
+            </div>
+      
+            {/* Mobile dot indicators */}
+            <div className="flex lg:hidden items-center justify-center gap-2 mt-4 w-full">
+              {TECH_RELATED_SOLUTIONS.map((_, dotIdx) => (
+                <div
+                  key={dotIdx}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeRelatedIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-300"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9 — Call to Action */}
+      <section className="w-full bg-zinc-800 py-10 px-6 lg:px-12 relative overflow-hidden">
+      
+        {/* Decorative background circles */}
+        <div className="absolute -top-20 -right-50 w-80 h-80 rounded-full bg-white/5 pointer-events-none" />
+          <div className="absolute -bottom-32 -left-18 w-96 h-96 rounded-full bg-white/5 pointer-events-none" />
+          <div className="absolute top-10 right-20 w-40 h-40 rounded-full bg-white/5 pointer-events-none" />
+              <div className="relative w-full max-w-4xl mx-auto text-center">
+                {/* Eyebrow */}
+                <p className="text-white text-md font-semibold tracking-[0.18em] uppercase mb-5">
+                  Get Started Today
+                </p>
+      
+                {/* Heading */}
+                <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                  Ready to Modernize Your {" "}
+                  <span className="text-[#2F3296] relative inline-block">
+                    HR Operations
+                    <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-white/40 rounded-full" />
+                  </span>
+                  ?
+                </h2>
+      
+                {/* Subtext */}
+                <p className="text-white/85 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+                  Partner with HRTECHZ to build scalable, secure, and future-ready technology solutions for your workforce.
+                </p>
+      
+              {/* CTA buttons */}
+              <CTA_Buttons
+              primaryText="Talk to an Expert"
+              primaryHref="/consultation"
+              secondaryText="Request a Demo"
+              secondaryHref="/demo"
+              />
+        </div>
+      </section>
+      
       <Footer />
     </div>
   );

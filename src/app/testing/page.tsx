@@ -1036,7 +1036,7 @@ export default function TestingPage() {
             {INDUSTRIES.map((industry) => (
               <button
                 key={industry.label}
-                className="group flex items-center gap-3 rounded-xl px-4 py-3 border text-left shadow-lg bg-[#2F3296]/20 border-zinc-200 text-white hover:border-zinc-300 hover:scale-[1.02] transition-all duration-300 cursor-pointer w-full"
+                className="group flex items-center gap-3 rounded-xl px-4 py-3 border text-left shadow-sm shadow-white bg-[#2F3296]/20 border-zinc-200 text-white hover:border-zinc-300 hover:scale-[1.02] transition-all duration-300 cursor-pointer w-full"
               >
                 <span className="text-xl flex-shrink-0">{industry.icon}</span>
                 <span className="text-sm font-semibold leading-snug">
