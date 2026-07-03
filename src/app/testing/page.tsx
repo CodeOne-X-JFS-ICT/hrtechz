@@ -789,10 +789,10 @@ export default function TestingPage() {
                     <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-between">
                     
                     {/* ── LEFT SIDE: Large Visual Card Display Area (Optimized min-height bounds for mobile views) ── */}
-                    <div className="w-full lg:w-[48%] flex items-center justify-center bg-white shadow-[#2F3296] rounded-3xl p-6 lg:p-12 shadow-xl min-h-[160px] lg:min-h-[400px] relative overflow-hidden">
+                    <div className="w-full lg:w-[48%] flex items-center justify-center bg-white shadow-black rounded-3xl p-6 lg:p-12 shadow-xl min-h-[160px] lg:min-h-[400px] relative overflow-hidden">
                         {/* Decorative subtle abstract backdrop pattern */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-[#2F3296]/5 pointer-events-none" />
-                        
+                        <div className="absolute inset-0 bg-gradient-to-br from-black via-white to-black pointer-events-none" />
+               
                         {/* Core Verifieze Logo Placement (Scaled down bounds cleanly on mobile viewports) */}
                         <div className="relative w-full max-w-[200px] lg:max-w-sm h-16 lg:h-28 z-10 transition-transform duration-300 hover:scale-105">
                         <Image
