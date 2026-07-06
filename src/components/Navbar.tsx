@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { label: "PERFORMANCE MANAGEMENT", href: "/performance-management" },*/
   { label: "TECHNOLOGY", href: "/technology" },
   { label: "SUBSIDIARY", href: "/subsidiary" },
+  { label: "CONTACT", href: "/contact" },
   {
     label: "ABOUT",
     href: "/about",

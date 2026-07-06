@@ -413,6 +413,11 @@ export default function TechnologyPage() {
 
         <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-6 pb-12 lg:py-15">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-center lg:items-start justify-between w-full">
+        
+        {/* Decorative background circles */}
+        <div className="absolute -bottom-20 -right-50 w-80 h-80 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+          <div className="absolute -top-32 -left-18 w-96 h-96 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+          <div className="absolute bottom-10 right-20 w-40 h-40 rounded-full bg-[#2F3296]/15 pointer-events-none" />
 
             {/* LEFT: Headline & Badges */}
             <div className="w-full lg:w-[50%] flex flex-col gap-3 lg:gap-4 text-center lg:text-left items-center lg:items-start">

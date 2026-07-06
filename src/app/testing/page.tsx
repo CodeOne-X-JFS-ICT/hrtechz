@@ -505,6 +505,10 @@ export default function TestingPage() {
         {/* Dynamic alignment layout parent wrapper: Tightened gaps on mobile */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-center lg:items-start justify-between w-full">    
         
+        <div className="absolute -bottom-20 -left-50 w-80 h-80 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+          <div className="absolute -top-32 -right-18 w-96 h-96 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+          <div className="absolute bottom-10 left-20 w-40 h-40 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+
         {/*  LEFT SIDE: Headline & Badges (Centered on mobile, left on desktop) */}
         <div className="w-full lg:w-[50%] flex flex-col gap-3 lg:gap-4 text-center lg:text-left items-center lg:items-start">
       

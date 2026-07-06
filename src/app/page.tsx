@@ -442,8 +442,13 @@ export default function Home() {
     
       {/* ── Main hero content ── */}
       <div className="w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-10 lg:py-16">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="absolute -bottom-20 -right-50 w-80 h-80 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+        <div className="absolute top-50 left-30 w-40 h-40 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+          <div className="absolute -top-32 -left-18 w-96 h-96 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+          <div className="absolute bottom-10 right-20 w-40 h-40 rounded-full bg-[#2F3296]/15 pointer-events-none" />
 
+        <div className="max-w-3xl mx-auto text-center">
+          
           {/* Headline */}
         <h1 className="text-4xl lg:text-6xl font-bold uppercase leading-tight tracking-tight text-black mb-6">
             Transforming <span className="text-[#2F3296]">HR</span> for the{" "}
@@ -470,7 +475,7 @@ export default function Home() {
       </div>
 
       {/* ── Statistics bar ── */}
-      <div className="w-full border-t border-zinc-100 bg-zinc-50">
+      <div className="w-full">
         <div className="w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-10 lg:py-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
             {STATS.map((stat, i) => (
