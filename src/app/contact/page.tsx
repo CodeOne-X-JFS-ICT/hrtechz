@@ -99,16 +99,17 @@ export default function ContactPage() {
     >
       <Navbar />
 
-      {/* ══════════════════════════════════════════
-    HERO — Contact Us
-══════════════════════════════════════════ */}
+      {/* HERO */}
 <section className="w-full bg-zinc-900 relative overflow-hidden py-20 lg:py-18 px-6 lg:px-12">
     <div className="absolute -top-20 -right-30 w-80 h-80 rounded-full bg-white/5 pointer-events-none" />
     <div className="absolute -bottom-12 -left-28 w-96 h-96 rounded-full bg-white/5 pointer-events-none" />
     <div className="absolute top-30 right-20 w-40 h-40 rounded-full bg-white/5 pointer-events-none" />
-
+        {/* Decorative grid lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(47,50,150,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(47,50,150,0.05)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+      
 {/* Breadcrumb — Hidden on mobile, flex on desktop */}
-            <div className="hidden lg:flex items-center gap-2 text-sm text-zinc-400"> <Link href="/" className="hover:text-[#2F3296] transition-colors duration-200">
+        <div className="hidden lg:flex items-center gap-2 text-sm text-zinc-400"> 
+          <Link href="/" className="hover:text-[#2F3296] transition-colors duration-200">
             Home
             </Link>
             <span>/</span>
@@ -130,6 +131,7 @@ export default function ContactPage() {
         <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase">
           Get in Touch
         </p>
+        <span className="inline-block w-8 h-0.5 bg-[#2F3296]" />
       </div>
 
       {/* Headline */}

@@ -418,7 +418,9 @@ export default function TechnologyPage() {
         <div className="absolute -bottom-20 -right-50 w-80 h-80 rounded-full bg-[#2F3296]/15 pointer-events-none" />
           <div className="absolute -top-32 -left-18 w-96 h-96 rounded-full bg-[#2F3296]/15 pointer-events-none" />
           <div className="absolute bottom-10 right-20 w-40 h-40 rounded-full bg-[#2F3296]/15 pointer-events-none" />
-
+  {/* Decorative grid lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(47,50,150,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(47,50,150,0.05)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+      
             {/* LEFT: Headline & Badges */}
             <div className="w-full lg:w-[50%] flex flex-col gap-3 lg:gap-4 text-center lg:text-left items-center lg:items-start">
               <div className="hidden lg:flex items-center gap-2 text-sm text-zinc-400">
