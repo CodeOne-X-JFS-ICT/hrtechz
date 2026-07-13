@@ -346,18 +346,18 @@ export default function LeadershipPage() {
 
           {/* Breadcrumb */}
           <div className="hidden lg:flex items-center gap-2 text-sm text-zinc-400"> 
-            <Link href="/" className="hover:text-[#2F3296] transition-colors duration-200">Home</Link>
+            <Link href="/" className="hover:text-white transition-colors duration-200">Home</Link>
             <span>/</span>
             <Link href="/about" className="hover:text-[#2F3296] transition-colors duration-200">About</Link>
             <span>/</span>
-            <span className="text-[#2F3296] font-semibold">Leadership</span>
+            <span className="text-[#0911F8] font-semibold">Leadership</span>
           </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto text-center flex flex-col items-center gap-6">
           {/* Eyebrow */}
           <div className="flex items-center justify-center gap-3">
             <span className="inline-block w-8 h-0.5 bg-[#2F3296]" />
-            <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase">
+            <p className="text-[#0911F8] text-sm font-semibold tracking-[0.18em] uppercase">
               Meet the Team
             </p>
             <span className="inline-block w-8 h-0.5 bg-[#2F3296]" />
@@ -381,7 +381,7 @@ export default function LeadershipPage() {
           {/* Founding year badge */}
           <div className="flex flex-wrap justify-center gap-4 mt-2">
             {["Est. 2012", "12+ Years", "100+ Professionals", "Global Reach"].map((tag) => (
-              <span key={tag} className="inline-flex items-center gap-2 px-4 py-2 bg-[#2F3296]/15 border border-[#2F3296]/30 text-[#2F3296] text-xs font-bold rounded-full tracking-wider">
+              <span key={tag} className="inline-flex items-center gap-2 px-4 py-2 bg-[#2F3296]/15 border border-[#2F3296]/60 text-white text-xs font-bold rounded-full tracking-wider">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#2F3296]" />
                 {tag}
               </span>
@@ -408,8 +408,7 @@ export default function LeadershipPage() {
             {/* Left: text */}
             <div className="flex-1 flex flex-col gap-5 text-center lg:text-left items-center lg:items-start">
               <div className="flex items-center justify-center lg:justify-start gap-3">
-                <span className="inline-block w-8 h-0.5 bg-[#2F3296]" />
-                <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase">Our Story</p>
+                <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase">Our Story</p>
               </div>
               <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight">
                 From Two People to a{" "}
@@ -503,7 +502,7 @@ export default function LeadershipPage() {
             {/* left — Our Values 2×2 grid */}
             <div className="flex-1 flex flex-col gap-6">
               <div className="text-center lg:text-left">
-                <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-2">
+                <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-2">
                   Our Values
                 </p>
                 <h2 className="text-2xl lg:text-3xl font-bold text-black">
@@ -527,7 +526,7 @@ export default function LeadershipPage() {
             {/* Right — Our Approach 2×2 grid */}
             <div className="flex-1 flex flex-col gap-6">
               <div className="text-center lg:text-left">
-                <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-2">
+                <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-2">
                   Our Approach
                 </p>
                 <h2 className="text-2xl lg:text-3xl font-bold text-black">
@@ -557,7 +556,7 @@ export default function LeadershipPage() {
           
           {/* Header */}
           <div className="text-center">
-            <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-3">Our Team</p>
+            <p className="text-white text-md font-semibold tracking-[0.18em] uppercase mb-3">Our Team</p>
             <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
               The People Behind{" "}
               <span className="text-[#2F3296]">HRTECHZ</span>

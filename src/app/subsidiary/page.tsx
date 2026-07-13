@@ -459,7 +459,7 @@ export default function SubsidiariesPage() {
       {/* SECTION 1 — Hero */}
       <section className="w-full bg-black relative overflow-hidden py-18 lg:py-12 px-6 lg:px-12">
         {/* Decorative grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(47,50,150,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(47,50,150,0.06)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(13, 20, 214, 0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(47,50,150,0.06)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
         {/* Glow blobs */}
         <div className="absolute top-0 left-1/3 w-[600px] h-[300px] bg-[#2F3296]/20 blur-[140px] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-[#2F3296]/10 blur-[100px] rounded-full pointer-events-none" />
@@ -469,16 +469,16 @@ export default function SubsidiariesPage() {
           {/* LEFT: Text */}
           <div className="flex-1 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start">
             {/* Breadcrumb */}
-            <div className="hidden lg:flex items-center gap-2 text-sm text-zinc-400">
+            <div className="hidden lg:flex items-center gap-2 text-sm text-white">
               <Link href="/" className="hover:text-[#2F3296] transition-colors duration-200">Home</Link>
               <span>/</span>
-              <span className="text-[#2F3296] font-semibold">Subsidiaries</span>
+              <span className="text-[#0911F8] font-semibold">Subsidiaries</span>
             </div>
 
             {/* Eyebrow */}
             <div className="flex items-center justify-center lg:justify-start gap-3">
               <span className="inline-block w-8 h-0.5 bg-[#2F3296]" />
-              <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase">The HRTECH-Z Group</p>
+              <p className="text-[#0911F8] text-sm font-semibold tracking-[0.18em] uppercase">The HRTECH-Z Group</p>
             </div>
 
             {/* Headline */}
@@ -504,7 +504,7 @@ export default function SubsidiariesPage() {
             {/* Core values pills */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-2">
               {CORE_VALUES.map((v) => (
-                <span key={v.label} className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#2F3296]/15 border border-[#2F3296]/30 text-[#2F3296] text-xs font-semibold rounded-full">
+                <span key={v.label} className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#2F3296]/15 border border-[#2F3296]/70 text-white text-xs font-semibold rounded-full">
                   <span>{v.icon}</span>{v.label}
                 </span>
               ))}
@@ -844,7 +844,7 @@ export default function SubsidiariesPage() {
       <section className="w-full bg-black relative overflow-hidden py-10 lg:py-15 px-6 lg:px-12">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-3">Framework</p>
+            <p className="text-white text-sm font-semibold tracking-[0.18em] uppercase mb-3">Framework</p>
             <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
               Strategic Resource{" "}
               <span className="text-[#2F3296]">Allocation</span>
@@ -909,7 +909,7 @@ export default function SubsidiariesPage() {
       <section className="w-full bg-white py-16 lg:py-20 px-6 lg:px-12">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase mb-3">Risk Management</p>
+            <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-3">Risk Management</p>
             <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight">
               Key Risks &{" "}
               <span className="text-[#2F3296]">Operational Mitigations</span>

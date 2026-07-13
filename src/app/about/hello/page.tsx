@@ -109,11 +109,11 @@ export default function ContactPage() {
       
 {/* Breadcrumb — Hidden on mobile, flex on desktop */}
         <div className="hidden lg:flex items-center gap-2 text-sm text-zinc-400"> 
-          <Link href="/" className="hover:text-[#2F3296] transition-colors duration-200">
+          <Link href="/" className="hover:text-white transition-colors duration-200">
             Home
             </Link>
             <span>/</span>
-            <span className="text-[#2F3296] font-semibold">Contact</span>
+            <span className="text-[#0911F8] font-semibold">Contact</span>
         </div>
 
   {/* Ambient glow blobs */}
@@ -128,7 +128,7 @@ export default function ContactPage() {
       {/* Eyebrow */}
       <div className="flex items-center justify-center gap-3">
         <span className="inline-block w-8 h-0.5 bg-[#2F3296]" />
-        <p className="text-[#2F3296] text-sm font-semibold tracking-[0.18em] uppercase">
+        <p className="text-[#0911F8] text-sm font-semibold tracking-[0.18em] uppercase">
           Get in Touch
         </p>
         <span className="inline-block w-8 h-0.5 bg-[#2F3296]" />
@@ -154,7 +154,7 @@ export default function ContactPage() {
         {SERVICE_BADGES.map((badge) => (
           <span
             key={badge}
-            className="inline-flex items-center gap-2 px-8 py-1.5 bg-[#2F3296]/15 border border-[#2F3296]/30 text-white/70 text-xs sm:text-sm font-semibold rounded-2xl lg:rounded-full w-full lg:w-auto min-h-[44px] lg:min-h-0"
+            className="inline-flex items-center gap-2 px-8 py-1.5 bg-[#2F3296]/15 border border-[#2F3296]/60 text-white/70 text-xs sm:text-sm font-semibold rounded-2xl lg:rounded-full w-full lg:w-auto min-h-[44px] lg:min-h-0"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#2F3296]" />
             {badge}
