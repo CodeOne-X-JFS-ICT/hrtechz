@@ -3,13 +3,14 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
   { label: "HOME", href: "/" },
   { label: "TESTING", href: "/testing" },
   /*{ label: "GENERATED AI", href: "/generated-ai" },
   { label: "PERFORMANCE MANAGEMENT", href: "/performance-management" },*/
-  { label: "TECHNICAL", href: "/technical" },
+  { label: "TECHNOLOGY", href: "/technology" },
   { label: "SUBSIDIARY", href: "/subsidiary" },
   {
     label: "ABOUT",
@@ -27,6 +28,7 @@ const NAV_ITEMS = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
@@ -57,16 +59,18 @@ export default function Navbar() {
         {/* Desktop nav links */}
         <ul className="hidden lg:flex flex-1 items-center justify-center list-none m-0 p-0 gap-0.5 flex-nowrap">
           {/*Temporary nav item right coner untill stage 2,3 */}
-<div className="hidden lg:block w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 lg:py-28"></div>
-{NAV_ITEMS.map((item) =>
-            item.children ? (
-              <li key={item.label} className="relative" ref={dropdownRef}>
+          <div className="hidden lg:block w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-20 lg:py-28"></div>
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href || (item.children?.some(child => pathname === child.href));
+            return item.children ? (
+            <li key={item.label} className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen((v) => !v)}
                   aria-expanded={dropdownOpen}
                   aria-haspopup="true"
-                  className="flex items-center px-2.5 py-2 text-black text-[12px] font-semibold tracking-wider whitespace-nowrap no-underline rounded hover:text-[#2F3296] hover:underline decoration-[#2F3296] transition-colors duration-150"
-                  >
+                  className={`flex items-center px-2.5 py-2 text-black text-[12px] font-semibold tracking-wider whitespace-nowrap no-underline rounded hover:text-[#2F3296] hover:underline decoration-[#2F3296] decoration-2 transition-colors duration-150 ${
+                    isActive ? "underline text-[#2F3296]" : ""
+                  }`}>
                   {item.label}
                   <span className="text-[8px] opacity-75" aria-hidden="true">
                     {dropdownOpen ? "▲" : "▼"}
@@ -78,18 +82,24 @@ export default function Navbar() {
                     role="menu"
                     className="absolute top-[calc(100%+8px)] left-0 min-w-[170px] bg-white border-t-[3px] border-[#2F3296] rounded-b-md shadow-[0_8px_24px_rgba(0,0,0,0.18)] list-none m-0 py-1.5 z-[200]"
                   >
-                    {item.children.map((child) => (
+                    {item.children.map((child) => {
+                      const isChildActive = pathname === child.href;
+                      return (
                       <li key={child.label} role="none">
                         <Link
                           href={child.href}
                           role="menuitem"
                           onClick={() => setDropdownOpen(false)}
-                          className="block px-[18px] py-2 text-black text-[13px] font-medium no-underline hover:bg-[#2F3296] hover:text-white transition-colors duration-100"
-                        >
+                          className={`block px-[18px] py-2 text-[13px] font-medium no-underline transition-colors duration-100 ${
+                              isChildActive 
+                                ? "bg-[#2F3296] text-white underline decoration-white decoration-2" 
+                                : "text-black hover:bg-[#2F3296] hover:text-white"
+                            }`}>
                           {child.label}
                         </Link>
                       </li>
-                    ))}
+                    );
+                    })}
                   </ul>
                 )}
               </li>
@@ -97,13 +107,15 @@ export default function Navbar() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="flex items-center px-2.5 py-2 text-black text-[12px] font-semibold tracking-wider whitespace-nowrap no-underline rounded hover:text-[#2F3296] hover:underline decoration-[#2F3296] transition-colors duration-150"
+                  className={`flex items-center px-2.5 py-2 text-black text-[12px] font-semibold tracking-wider whitespace-nowrap no-underline rounded hover:text-[#2F3296] hover:underline decoration-[#2F3296] decoration-2 transition-colors duration-150 ${
+                    pathname === item.href ? "underline text-[#2F3296]" : ""
+                  }`}
                 >
                   {item.label}
                 </Link>
               </li>
-            )
-          )}
+            );
+          })}
         </ul>
 
         {/* Login — desktop
@@ -150,29 +162,36 @@ export default function Navbar() {
             style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
           >
             <ul className="list-none m-0 p-0 flex flex-col">
-              {NAV_ITEMS.map((item) =>
-                item.children ? (
-                  <li key={item.label} className="w-full">
+              {NAV_ITEMS.map((item) => {
+                const isMobileActive = pathname === item.href || (item.children?.some(child => pathname === child.href));
+                
+                return item.children ? (<li key={item.label} className="w-full">
                     <button
                       onClick={() => setMobileAboutOpen((v) => !v)}
-                      className="flex justify-between items-center w-full px-6 py-3 text-black text-[13px] font-semibold tracking-wider bg-transparent border-0 cursor-pointer text-left hover:bg-zinc-50 transition-colors duration-100"
-                    >
+                      className={`flex justify-between items-center w-full px-6 py-3 text-[13px] font-semibold tracking-wider bg-transparent border-0 cursor-pointer text-left hover:bg-zinc-50 transition-colors duration-100 ${
+                        isMobileActive ? "text-[#2F3296] bg-[#2F3296]/5" : "text-black"
+                      }`}>
                       {item.label}
                       <span className="text-[10px] text-[#2F3296]">{mobileAboutOpen ? "▲" : "▼"}</span>
                     </button>
                     {mobileAboutOpen && (
                       <ul className="list-none m-0 p-0 bg-zinc-50 border-y border-zinc-100">
-                        {item.children.map((child) => (
+                        {item.children.map((child) => {
+                          const isChildActive = pathname === child.href;
+                          return (
                           <li key={child.label}>
                             <Link
                               href={child.href}
                               onClick={() => setMobileOpen(false)}
-                              className="block px-10 py-3 text-[#2F3296] text-[13px] font-medium no-underline hover:bg-[#2F3296]/10 transition-colors duration-100"
-                            >
+                              className={`block px-10 py-3 text-[13px] font-medium no-underline transition-colors duration-100 ${
+                                  isChildActive ? "text-[#2F3296] font-bold bg-[#2F3296]/10" : "text-[#2F3296]"
+                                }`}
+                                >
                               {child.label}
                             </Link>
                           </li>
-                        ))}
+                          );
+                        })}
                       </ul>
                     )}
                   </li>
@@ -181,13 +200,17 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="block px-6 py-3 text-black text-[13px] font-semibold tracking-wider no-underline hover:bg-[#2F3296]/10 hover:text-[#2F3296] transition-colors duration-100"
+                      className={`block px-6 py-3 text-[13px] font-semibold tracking-wider no-underline transition-colors duration-100 ${
+                        pathname === item.href 
+                          ? "text-[#2F3296] bg-[#2F3296]/10 font-bold" 
+                          : "text-black hover:bg-[#2F3296]/10 hover:text-[#2F3296]"
+                      }`}
                     >
                       {item.label}
                     </Link>
                   </li>
-                )
-              )}
+                );
+              })}
             </ul>
           
 

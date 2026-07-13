@@ -501,10 +501,16 @@ export default function TestingPage() {
       {/* Top Section */}
       <section className="w-full relative overflow-hidden bg-white">
 
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-6 pb-12 lg:py-15">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 pt-6 pb-12 lg:py-20">
         {/* Dynamic alignment layout parent wrapper: Tightened gaps on mobile */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-center lg:items-start justify-between w-full">    
         
+        <div className="absolute -bottom-20 -left-50 w-80 h-80 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+          <div className="absolute -top-32 -right-18 w-96 h-96 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+          <div className="absolute bottom-10 left-20 w-40 h-40 rounded-full bg-[#2F3296]/15 pointer-events-none" />
+        {/* Decorative grid lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(47,50,150,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(47,50,150,0.05)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+      
         {/*  LEFT SIDE: Headline & Badges (Centered on mobile, left on desktop) */}
         <div className="w-full lg:w-[50%] flex flex-col gap-3 lg:gap-4 text-center lg:text-left items-center lg:items-start">
       
@@ -765,17 +771,18 @@ export default function TestingPage() {
                     </div>
                     </div>                    
                 ))}
-                </div>{/* Mobile Indicators for Section 3 — Hidden on Desktop */}
-              <div className="flex lg:hidden items-center justify-center gap-2 mt-2 w-full">
-                {SOLUTIONS.map((_, dotIdx) => (
-                  <div
-                    key={dotIdx}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      activeSolutionIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-300"
-                    }`}
-                  />
-                ))}
-              </div>
+                </div>
+                {/* Mobile Indicators for Section 3 — Hidden on Desktop */}
+                <div className="flex lg:hidden items-center justify-center gap-2 mt-2 w-full">
+                  {SOLUTIONS.map((_, dotIdx) => (
+                    <div
+                      key={dotIdx}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        activeSolutionIndex === dotIdx ? "w-6 bg-[#2F3296]" : "w-1.5 bg-zinc-300"
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>             
 
             </div>
@@ -788,10 +795,10 @@ export default function TestingPage() {
                     <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-between">
                     
                     {/* ── LEFT SIDE: Large Visual Card Display Area (Optimized min-height bounds for mobile views) ── */}
-                    <div className="w-full lg:w-[48%] flex items-center justify-center bg-white shadow-[#2F3296] rounded-3xl p-6 lg:p-12 shadow-xl min-h-[160px] lg:min-h-[400px] relative overflow-hidden">
+                    <div className="w-full lg:w-[48%] flex items-center justify-center bg-white shadow-black rounded-3xl p-6 lg:p-12 shadow-xl min-h-[160px] lg:min-h-[400px] relative overflow-hidden">
                         {/* Decorative subtle abstract backdrop pattern */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-[#2F3296]/5 pointer-events-none" />
-                        
+                        <div className="absolute inset-0 bg-gradient-to-br from-black via-white to-black pointer-events-none" />
+               
                         {/* Core Verifieze Logo Placement (Scaled down bounds cleanly on mobile viewports) */}
                         <div className="relative w-full max-w-[200px] lg:max-w-sm h-16 lg:h-28 z-10 transition-transform duration-300 hover:scale-105">
                         <Image
@@ -1035,7 +1042,7 @@ export default function TestingPage() {
             {INDUSTRIES.map((industry) => (
               <button
                 key={industry.label}
-                className="group flex items-center gap-3 rounded-xl px-4 py-3 border text-left shadow-lg bg-[#2F3296]/20 border-zinc-200 text-white hover:border-zinc-300 hover:scale-[1.02] transition-all duration-300 cursor-pointer w-full"
+                className="group flex items-center gap-3 rounded-xl px-4 py-3 border text-left shadow-sm shadow-white bg-[#2F3296]/20 border-zinc-200 text-white hover:border-zinc-300 hover:scale-[1.02] transition-all duration-300 cursor-pointer w-full"
               >
                 <span className="text-xl flex-shrink-0">{industry.icon}</span>
                 <span className="text-sm font-semibold leading-snug">
