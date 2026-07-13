@@ -550,12 +550,8 @@ export default function LeadershipPage() {
 
       {/* SECTION 3 — Our Team — Pinned with full-bleed brand-blue grid background patterns */}
       <section className="w-full bg-black relative overflow-hidden py-12 lg:py-20 px-6 lg:px-12">
-        {/* 💡 Ambient Grid Line Mask Underlay (Whole Background) */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(47,50,150,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(47,50,150,0.15)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none z-0" />
-        
-        {/* 💡 Deep central glow to catch the grid lines and give the section depth */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#2F3296]/10 blur-[130px] rounded-full pointer-events-none z-0" />
-
         {/* Relative z-10 container forces your headers, tabs, and dark cards to stay perfectly on top */}
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col gap-16">
           
