@@ -709,7 +709,7 @@ export default function Home() {
           <div className="flex-1 flex flex-col">
             <div className="mb-10">
               <p className="text-[#2F3296] text-md font-semibold tracking-[0.18em] uppercase mb-3">
-                Why Choose HRTECHZ
+                Why Choose HRTECHz
               </p>
               <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight mb-3">
                 The Complete{" "}
