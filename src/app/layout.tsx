@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "HRTECH z | Modern Workplace Portal",
   description: "Transforming HR to match the Modern Workplace",
+  icons: {
+    icon: "/images/title_hrtechz_logo.png",
+    shortcut: "/images/title_hrtechz_logo.png",
+    apple: "/images/title_hrtechz_logo.png",
+  },
 };
 
 export default function RootLayout({
